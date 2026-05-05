@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Enchanted Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;700&family=Nunito:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --rose: #C9637A;
+      --rose-light: #F5D0DA;
+      --rose-pale: #FDF0F3;
+      --gold: #C8A951;
+      --gold-light: #F5E8C2;
+      --gold-pale: #FEFBF0;
+      --midnight: #1A1030;
+      --midnight-mid: #2D1F4E;
+      --lavender: #7B5EA7;
+      --lavender-light: #D4C4EE;
+      --cream: #FBF7F0;
+      --sage: #6B8C6B;
+      --petal: #F2C4CE;
+      --sky: #A8D4E8;
+      --enchanted: #E8D5F5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--rose);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--rose);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s ease-out, width 0.2s, height 0.2s, opacity 0.2s;
+      opacity: 0.6;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--midnight);
+      overflow-x: hidden;
+      cursor: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Loader */
+    #site-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(232, 213, 245, 0.98), rgba(251, 247, 240, 0.98));
+      color: var(--midnight);
+    }
+
+    #site-loader .loader-inner {
+      text-align: center;
+    }
+
+    #site-loader .loader-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.18em;
+      color: var(--midnight);
+    }
+
+    #site-loader .loader-logo span {
+      color: var(--rose);
+    }
+
+    #site-loader .loader-word {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--rose);
+      margin-top: 0.35rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .loader-spinner {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .loader-spinner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 6px solid rgba(201, 99, 122, 0.12);
+    }
+
+    .loader-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      position: relative;
+      transform-origin: -120% 50%;
+      animation: loader-orbit 1.6s linear infinite;
+    }
+
+    @keyframes loader-orbit {
+      from {
+        transform: rotate(0deg) translateX(36px) rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg) translateX(36px) rotate(-360deg);
+      }
+    }
+
+    #site-loader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 600ms ease;
+    }
+
+    /* Sparkles */
+    .sparkle-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      animation: floatUp linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg) scale(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.8;
+      }
+
+      90% {
+        opacity: 0.4;
+      }
+
+      100% {
+        transform: translateY(-20px) rotate(720deg) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 4rem;
+      background: rgba(251, 247, 240, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rose-light);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--midnight);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--rose);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--midnight-mid);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--rose);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--rose);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--enchanted) 0%, var(--cream) 40%, var(--rose-pale) 100%);
+      padding: 7rem 6rem 5rem;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '✦';
+      font-size: 0.6rem;
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--midnight);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.2em;
+      color: var(--lavender);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-desc {
+      font-size: 1.02rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: #4A3860;
+      max-width: 520px;
+      margin-bottom: 2.6rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, var(--rose), var(--lavender));
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(201, 99, 122, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201, 99, 122, 0.4);
+    }
+
+    .btn-outline {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--rose);
+      border: 1.5px solid var(--rose);
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      background: var(--rose-pale);
+      transform: translateY(-2px);
+    }
+
+    /* Hero illustration (portrait frame) */
+    .hero-illustration {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 1.2s 0.3s ease both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .portrait-frame {
+      position: relative;
+      width: 420px;
+      height: 520px;
+    }
+
+    .portrait-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+      background: linear-gradient(145deg, var(--enchanted), var(--lavender-light));
+      animation: morphShape 8s ease-in-out infinite;
+    }
+
+    @keyframes morphShape {
+
+      0%,
+      100% {
+        border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+      }
+
+      33% {
+        border-radius: 50% 50% 40% 60% / 55% 45% 65% 35%;
+      }
+
+      66% {
+        border-radius: 40% 60% 60% 40% / 40% 60% 50% 50%;
+      }
+    }
+
+    .portrait-inner {
+      position: absolute;
+      inset: 20px;
+      border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+      background: linear-gradient(160deg, var(--rose-pale), var(--gold-pale));
+      animation: morphShape 8s 1s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .portrait-svg {
+      width: 85%;
+      height: 85%;
+    }
+
+    /* Orbiting elements */
+    .orbit-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: 1px dashed rgba(201, 99, 122, 0.25);
+      transform: translate(-50%, -50%);
+      animation: spinSlow linear infinite;
+    }
+
+    @keyframes spinSlow {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    .orbit-gem {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+    }
+
+    /* SECTION COMMON */
+    section {
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-tag::before {
+      content: '— ';
+    }
+
+    .section-tag::after {
+      content: ' —';
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--midnight);
+      line-height: 1.2;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--lavender);
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 7rem 6rem;
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .about-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2.5rem;
+      border: 1px solid var(--rose-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rose), var(--gold), var(--lavender));
+    }
+
+    .about-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #4A3860;
+    }
+
+    .about-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--midnight);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .about-text h3 em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #4A3860;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    /* CAROUSEL */
+    .carousel-container {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      height: auto;
+      border-radius: 1.6rem;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--rose-light);
+      box-shadow: 0 16px 40px rgba(201, 99, 122, 0.12);
+      margin-bottom: 1.5rem;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      animation: scrollCarousel 12s infinite ease-in-out;
+    }
+
+    .carousel-track img {
+      flex: 0 0 33.3333%;
+      width: 33.3333%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    @keyframes scrollCarousel {
+
+      0%,
+      25% {
+        transform: translateX(0);
+      }
+
+      33%,
+      58% {
+        transform: translateX(-33.3333%);
+      }
+
+      66%,
+      92% {
+        transform: translateX(-66.6666%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* ETHICS */
+    .ethics {
+      padding: 6rem 6rem;
+      background: linear-gradient(180deg, var(--enchanted) 0%, var(--cream) 100%);
+    }
+
+    .ethics-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 1.6rem;
+      padding: 2.5rem;
+      border: 1px solid var(--rose-light);
+      box-shadow: 0 18px 40px rgba(201, 99, 122, 0.1);
+    }
+
+    .ethics-card p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #4A3860;
+      font-weight: 300;
+    }
+
+    /* PORTRAITS GRID */
+    .portraits {
+      padding: 7rem 6rem;
+      background: var(--cream);
+    }
+
+    .portraits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .portrait-card {
+      background: white;
+      border-radius: 1.4rem;
+      border: 1px solid var(--rose-light);
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--midnight);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .portrait-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(201, 99, 122, 0.15);
+    }
+
+    .portrait-thumb {
+      height: 240px;
+      background: var(--rose-pale);
+      overflow: hidden;
+    }
+
+    .portrait-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .portrait-info {
+      padding: 1.3rem;
+      text-align: center;
+    }
+
+    .portrait-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .portrait-info span {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lavender);
+    }
+
+    /* MEMBER SECTIONS */
+    .member {
+      padding: 7rem 6rem;
+      background: linear-gradient(180deg, var(--rose-pale), var(--cream));
+    }
+
+    .member.alt {
+      background: var(--cream);
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 3rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .member-photo {
+      position: sticky;
+      top: 100px;
+      border-radius: 1.6rem;
+      overflow: hidden;
+      border: 1px solid var(--rose-light);
+      box-shadow: 0 16px 40px rgba(201, 99, 122, 0.12);
+    }
+
+    .member-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .member-grid>div.reveal {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .member-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      color: var(--midnight);
+      margin-bottom: 0.3rem;
+      grid-column: 1 / -1;
+    }
+
+    .member-role {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1rem;
+      grid-column: 1 / -1;
+    }
+
+    .member-block {
+      background: white;
+      border-radius: 1.2rem;
+      padding: 1.8rem;
+      border: 1px solid var(--rose-light);
+      margin-bottom: 0;
+      height: 100%;
+    }
+
+    .member-block:nth-of-type(1),
+    .member-block:nth-of-type(2) {
+      grid-column: span 1;
+    }
+
+    .member-block:nth-of-type(n+3) {
+      grid-column: 1 / -1;
+    }
+
+    .member-block h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lavender);
+      margin-bottom: 1rem;
+    }
+
+    .member-block p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #4A3860;
+      font-weight: 300;
+    }
+
+    .member-block ul {
+      padding-left: 1.2rem;
+      color: #4A3860;
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    /* Single-item media grids should center and not stretch full width */
+    .media-grid:has(.media-item:only-child) {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+
+    /* Two-item grids look better as 2 columns */
+    .media-grid:has(.media-item:first-child:nth-last-child(2)) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .media-item {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--rose-light);
+      aspect-ratio: 3 / 4;
+      background: #1A1030;
+    }
+
+    .media-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .media-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      background: #1A1030;
+    }
+
+    /* Hover effect for media items */
+    .media-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .media-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(201, 99, 122, 0.2);
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 7rem 6rem;
+      background: linear-gradient(180deg, var(--enchanted), var(--rose-pale));
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .contact-desc {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #4A3860;
+      font-weight: 300;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: 1.4rem;
+      padding: 2rem;
+      border: 1px solid var(--rose-light);
+    }
+
+    .contact-card p {
+      line-height: 1.8;
+      color: #4A3860;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--midnight);
+      padding: 3rem 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.15em;
+    }
+
+    .footer-logo span {
+      color: var(--rose);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    @media (max-width: 1024px) {
+      nav {
+        padding: 1rem 2rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 2rem 5rem;
+      }
+
+      .hero-illustration {
+        display: none;
+      }
+
+      .about,
+      .ethics,
+      .portraits,
+      .member,
+      .contact {
+        padding: 5rem 2rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portraits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .member-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .member-grid>div.reveal {
+        grid-template-columns: 1fr;
+      }
+
+      .member-photo {
+        position: relative;
+        top: 0;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .media-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links {
+        display: none;
+      }
+
+      .portraits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Site Loader -->
+  <div id="site-loader" aria-hidden="true">
+    <div class="loader-inner" role="status" aria-label="Loading">
+      <div class="loader-logo">Enchanted<span>Portfolio</span></div>
+      <div class="loader-word">Preparing the royal halls...</div>
+      <div class="loader-spinner" aria-hidden="true">
+        <div class="loader-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sparkles -->
+  <div class="sparkle-container" id="sparkles"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Enchanted<span>Portfolio</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#ethics">Ethics</a></li>
+      <li><a href="#portraits">Royal Portraits</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-content">
+      <div class="hero-eyebrow">The Enchanted Portfolio</div>
+      <h1 class="hero-title">Disney Princesses and Their Prince in the <em>Digital World</em></h1>
+      <p class="hero-subtitle">Living in the IT Era - GE ELECT 3</p>
+      <p class="hero-desc">
+        We believe that Office Administration is the heart of every successful kingdom or organization. Just as a royal
+        court requires order, grace, and leadership, we strive to manage every task with discipline and integrity. In
+        this digital era, we embrace technology as our tool to provide efficient and high-quality service.
+      </p>
+      <div class="hero-cta">
+        <a href="#about" class="btn-primary">Read More</a>
+        <a href="#portraits" class="btn-outline">Meet the Team</a>
+      </div>
+    </div>
+    <div class="hero-illustration" aria-hidden="true">
+      <!-- Decorative SVG Portrait Area -->
+      <div class="portrait-frame">
+        <div class="portrait-bg"></div>
+        <div class="portrait-inner">
+          <svg class="portrait-svg" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+            <!-- Crown -->
+            <g opacity="0.85">
+              <polygon points="150,40 130,65 140,60 150,75 160,60 170,65" fill="#C8A951" opacity="0.9" />
+              <circle cx="130" cy="68" r="5" fill="#C9637A" opacity="0.8" />
+              <circle cx="150" cy="77" r="5" fill="#7B5EA7" opacity="0.8" />
+              <circle cx="170" cy="68" r="5" fill="#C8A951" opacity="0.9" />
+            </g>
+            <!-- Head -->
+            <ellipse cx="150" cy="110" rx="40" ry="45" fill="#F5D0DA" opacity="0.9" />
+            <!-- Hair -->
+            <ellipse cx="150" cy="95" rx="45" ry="38" fill="#C8A951" opacity="0.7" />
+            <path d="M108 110 Q90 160 100 200" stroke="#C8A951" stroke-width="12" fill="none" stroke-linecap="round"
+              opacity="0.6" />
+            <path d="M192 110 Q210 160 200 200" stroke="#C8A951" stroke-width="12" fill="none" stroke-linecap="round"
+              opacity="0.6" />
+            <!-- Dress body -->
+            <path d="M120 170 Q80 220 60 310 L240 310 Q220 220 180 170 Z" fill="#C9637A" opacity="0.7" />
+            <path d="M115 175 Q100 200 90 250 L210 250 Q200 200 185 175 Z" fill="#E8A0B0" opacity="0.6" />
+            <!-- Bodice -->
+            <path d="M120 155 L130 180 L170 180 L180 155 Q165 148 150 148 Q135 148 120 155Z" fill="#7B5EA7"
+              opacity="0.8" />
+            <!-- Neck -->
+            <rect x="142" y="148" width="16" height="18" rx="4" fill="#F5D0DA" opacity="0.9" />
+            <!-- Dress details / stars -->
+            <circle cx="120" cy="230" r="3" fill="#C8A951" opacity="0.8" />
+            <circle cx="150" cy="260" r="4" fill="#C8A951" opacity="0.8" />
+            <circle cx="180" cy="235" r="3" fill="#C8A951" opacity="0.8" />
+            <circle cx="135" cy="290" r="3" fill="white" opacity="0.7" />
+            <circle cx="165" cy="280" r="2.5" fill="white" opacity="0.7" />
+            <!-- Magic wand -->
+            <line x1="195" y1="165" x2="240" y2="120" stroke="#C8A951" stroke-width="2.5" stroke-linecap="round" />
+            <polygon points="240,110 233,122 247,122" fill="#C8A951" opacity="0.9" />
+            <circle cx="240" cy="117" r="6" fill="#FFE066" opacity="0.8" />
+            <!-- Sparkles around wand -->
+            <text x="252" y="108" font-size="10" fill="#C8A951" opacity="0.8">✦</text>
+            <text x="245" y="95" font-size="7" fill="#C9637A" opacity="0.7">✦</text>
+            <text x="260" y="120" font-size="6" fill="#7B5EA7" opacity="0.7">✦</text>
+          </svg>
+        </div>
+        <!-- Orbit rings -->
+        <div class="orbit-ring" style="width:480px;height:480px;animation-duration:20s;">
+          <div class="orbit-gem">🌸</div>
+        </div>
+        <div class="orbit-ring"
+          style="width:380px;height:380px;animation-duration:15s;animation-direction:reverse;border-style:solid;border-color:rgba(200,169,81,0.15);">
+          <div class="orbit-gem">⭐</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-header" style="text-align:left;margin-bottom:2rem;">
+          <span class="section-tag">About</span>
+          <h2 class="section-title">Our <em>Digital</em> Journey</h2>
+        </div>
+        <p>This electronic portfolio is a collection of our best works and reflections for the course GE ELECT 3: Living
+          in the IT Era. As students of BSOA 3F, we created this website to demonstrate our practical skills in using
+          different digital tools and software.</p>
+        <p>Inspired by unity, creativity, and leadership, we showcase skills, reflections, and personal growth through
+          this e-Portfolio website. Each member contributes unique talents and experiences that reflect both academic
+          learning and personal development.</p>
+        <p>This portfolio serves as our digital journey in exploring technology, communication, and professional growth
+          in the modern world.</p>
+      </div>
+      <div class="about-visual reveal reveal-delay-1">
+        <div class="carousel-container">
+          <div class="carousel-track">
+            <img src="resources/carou1.jpg" alt="Digital Journey 1">
+            <img src="resources/carou2.jpg" alt="Digital Journey 2">
+            <img src="resources/carou3.jpg" alt="Digital Journey 3">
+          </div>
+        </div>
+        <div class="about-card">
+          <p class="about-note">Our goal is to lead with a spirit of service, ensuring that our professional actions
+            contribute to a harmonious, productive, and modern workplace.</p>
+          <div
+            style="margin-top:2rem; padding:1.5rem; background:var(--enchanted); border-radius:1rem; text-align:center;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--midnight);">
+              Royal Court of BSOA 3F</div>
+            <div style="font-size:0.8rem;color:var(--lavender);margin-top:0.3rem;font-weight:600;">CSPC - Camarines Sur
+              Polytechnic Colleges</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETHICS -->
+  <section class="ethics" id="ethics">
+    <div class="section-header reveal">
+      <span class="section-tag">Commitment</span>
+      <h2 class="section-title">Our Commitment to <em>Ethics</em></h2>
+    </div>
+    <div class="ethics-card reveal reveal-delay-1">
+      <p>"This portfolio is published for academic purposes. All images, videos, and personal information are shared
+        with the full consent and discretion of the members. We follow ethical guidelines for online sharing, ensuring
+        all external media are properly cited and that no plagiarism was committed in this project."</p>
+    </div>
+  </section>
+
+  <!-- PORTRAITS GRID -->
+  <section class="portraits" id="portraits">
+    <div class="section-header reveal">
+      <span class="section-tag">Royal Portraits</span>
+      <h2 class="section-title">Meet the <em>Princesses</em> and Their Prince</h2>
+    </div>
+    <div class="portraits-grid">
+      <a class="portrait-card reveal" href="#brutas">
+        <div class="portrait-thumb"><img src="resources/brutas/profile2.jpg" alt="Ivy O. Brutas"></div>
+        <div class="portrait-info">
+          <h3>Ivy O. Brutas</h3><span>Elsa</span>
+        </div>
+      </a>
+      <a class="portrait-card reveal reveal-delay-1" href="#cuenca">
+        <div class="portrait-thumb"><img src="resources/cuenca/profile.jpg" alt="Grace B. Cuenca"></div>
+        <div class="portrait-info">
+          <h3>Grace B. Cuenca</h3><span>Cinderella</span>
+        </div>
+      </a>
+      <a class="portrait-card reveal reveal-delay-2" href="#esta">
+        <div class="portrait-thumb"><img src="resources/esta/profile2.jpg" alt="Ryza Joy B. Esta"></div>
+        <div class="portrait-info">
+          <h3>Ryza Joy B. Esta</h3><span>Moana</span>
+        </div>
+      </a>
+      <a class="portrait-card reveal" href="#leria">
+        <div class="portrait-thumb"><img src="resources/leria/profile.jpg" alt="Kennette P. Leria"></div>
+        <div class="portrait-info">
+          <h3>Kennette P. Leria</h3><span>Flynn</span>
+        </div>
+      </a>
+      <a class="portrait-card reveal reveal-delay-1" href="#ludovice">
+        <div class="portrait-thumb"><img src="resources/ludovice/profile2.jpg" alt="Jasmin L. Ludovice"></div>
+        <div class="portrait-info">
+          <h3>Jasmin L. Ludovice</h3><span>Jasmine</span>
+        </div>
+      </a>
+      <a class="portrait-card reveal reveal-delay-2" href="#monte">
+        <div class="portrait-thumb"><img src="resources/monte/profile.jpg" alt="Rosita A. Monte"></div>
+        <div class="portrait-info">
+          <h3>Rosita A. Monte</h3><span>Belle</span>
+        </div>
+      </a>
+      <a class="portrait-card reveal" href="#quemado">
+        <div class="portrait-thumb"><img src="resources/quemado/profile2.jpg" alt="Stephanie G. Quemado"></div>
+        <div class="portrait-info">
+          <h3>Stephanie G. Quemado</h3><span>Anna</span>
+        </div>
+      </a>
+      <a class="portrait-card reveal reveal-delay-1" href="#talagtag">
+        <div class="portrait-thumb"><img src="resources/talagtag/profile.jpg" alt="Missy Therese D. Talagtag"></div>
+        <div class="portrait-info">
+          <h3>Missy Therese D. Talagtag</h3><span>Aurora</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- MEMBER: BRUTAS -->
+  <section class="member" id="brutas">
+    <div class="member-grid">
+      <div class="member-photo reveal"><img src="resources/brutas/profile.jpg" alt="Ivy O. Brutas"></div>
+      <div class="reveal reveal-delay-1">
+        <div class="member-name">Ivy O. Brutas</div>
+        <div class="member-role">Elsa</div>
+        <div class="member-block">
+          <h4>About Me</h4>
+          <ul>
+            <li>Name: Ivy Ongog Brutas</li>
+            <li>Age: 21 years old</li>
+            <li>Birthday: October 14, 2004</li>
+            <li>Address: Salvacion, Bato, Camarines Sur</li>
+            <li>Father's Name: Flaviano B. Brutas</li>
+            <li>Mother's Name: Melinda R. Brutas</li>
+          </ul>
+        </div>
+        <div class="member-block">
+          <h4>My Goal</h4>
+          <p>My happiness comes from my strong connection with my family, which I consider my true success. I aim to
+            achieve success not only for personal growth but also to prove my abilities to the people who matter most.
+            Despite doubts from others, I am motivated to work hard and show my worth. I am deeply grateful for my
+            parents' sacrifices, and I strive to make them proud by becoming the best daughter I can be. With
+            determination and love, I am committed to reaching my dreams, inspiring others, and building a successful
+            future for my family.</p>
+        </div>
+        <div class="member-block">
+          <h4>Talents and Hobbies</h4>
+          <p>Dancing is my passion and my way to fight loneliness while staying at home. Whenever I feel alone or sad,
+            it serves as my companion and helps me express my emotions through movement. It turns my quiet and empty
+            days into something happy and meaningful. Truly, dancing is my source of joy and strength that keeps me
+            company even when I am by myself.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/brutas/hobby%20and%20talent.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>IT makes businesses accessible and efficient. Website creation blends tech and creativity. Digital
+            platforms expand reach and streamline user experience.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>The Living in the IT Era course helped me understand technology in a way that actually makes sense in my
+            daily life. Before, I only used gadgets without really knowing how they worked, but now I understand the
+            difference between IT and ICT and how hardware, software, and people all work together. I also found it
+            interesting how simple things like binary numbers are used in computers, and I am proud that I can now
+            understand and convert them. This subject made me realize that technology is not just tools, but something
+            that depends on how people use it. Overall, it made me more aware and confident when using technology.
+            Creating this e-Portfolio website was both challenging and fulfilling for me. At first, I struggled with
+            organizing my ideas and making everything look presentable, but I slowly learned how to design it in a clear
+            and simple way. Through this experience, I became more creative and patient, especially when fixing
+            mistakes. In the end, I felt proud because I was able to create something that shows my skills and effort.
+          </p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/brutas/daily%20communication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>I actively participated in professional development activities, including the 2nd and 3rd Regional Congress
+            for Future Administrative Professionals (RCFAP) and the Corporate Fashion Show, all held at the CSPC Main
+            Campus. These experiences allowed me to expand my knowledge, develop my skills, and gain confidence through
+            active participation. I found these events both enjoyable and enriching, as they contributed positively to
+            my personal and professional growth.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/brutas/professional%20development%201.jpg"
+                alt="Brutas professional development 1"></div>
+            <div class="media-item"><img src="resources/brutas/professional%20development%202.jpg"
+                alt="Brutas professional development 2"></div>
+            <div class="media-item"><img src="resources/brutas/professional%20development%203.jpg"
+                alt="Brutas professional development 3"></div>
+            <div class="media-item"><img src="resources/brutas/professional%20development%204.jpg"
+                alt="Brutas professional development 4"></div>
+            <div class="media-item"><video src="resources/brutas/professional%20development%205.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER: CUENCA -->
+  <section class="member alt" id="cuenca">
+    <div class="member-grid">
+      <div class="member-photo reveal"><img src="resources/cuenca/profile.jpg" alt="Grace B. Cuenca"></div>
+      <div class="reveal reveal-delay-1">
+        <div class="member-name">Grace B. Cuenca</div>
+        <div class="member-role">Cinderella</div>
+        <div class="member-block">
+          <h4>About Me</h4>
+          <ul>
+            <li>Name: Grace Bagacina Cuenca</li>
+            <li>Age: 22 years old</li>
+            <li>Birthday: March 3, 2004</li>
+            <li>Address: San Juan, Iriga City, Camarines Sur</li>
+            <li>Father's Name: Mario O. Cuenca</li>
+            <li>Mother's Name: Judith B. Cuenca</li>
+          </ul>
+        </div>
+        <div class="member-block">
+          <h4>My Goal</h4>
+          <p>As a student, my primary goal is to complete my studies, earn my diploma, and achieve strong academic
+            performance to make my parents proud. I also aim to develop practical skills that I can apply in my future
+            career. At present, I am focused on persevering through college, gaining valuable experiences, and
+            eventually securing a stable job after graduation.</p>
+        </div>
+        <div class="member-block">
+          <h4>Talents and Hobbies</h4>
+          <p>My hobby is creating TikTok content, specifically dancing and lip sync videos. I enjoy learning trending
+            dance challenges and lip syncing to my favorite songs because it helps me express myself and boost my
+            confidence. Whenever I feel stressed or bored, I open TikTok and record videos using popular sounds and
+            effects. It became my way to relax, have fun, and connect with other people online.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/cuenca/hobbies%20and%20talent.mp4" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><video src="resources/cuenca/hobbies%20and%20talent%202.mp4" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><video src="resources/cuenca/hobbies%20and%20talent%203.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course, I learned how important technology is in our daily lives, especially in
+            school and future work. Before, I did not really pay attention to how technology works, but now I understand
+            its importance and how it makes tasks easier and faster. I also learned about digital citizenship and how to
+            be responsible when using the internet and social media. This course made me realize that being computer
+            literate is a big advantage for an administrative professional like me. While creating this electronic
+            portfolio website, I learned how to organize my outputs and present them in a neat and professional way. I
+            also realized that patience is important because editing and arranging everything takes time and effort.
+            This activity helped me improve my tech skills and gave me confidence to use new software in the future. In
+            the end, I felt happy and proud because I was able to create something that reflects my effort and learning.
+          </p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>I use my cellphone as my primary tool for communication and my laptop for completing academic tasks. I
+            usually start my day by checking my messages on Messenger and responding to my friends and family.
+            Throughout the day, I communicate with my classmates through group chats to discuss school activities and
+            assignments. Communication plays an important role in helping me stay connected, express my thoughts and
+            feelings, and feel less alone even when I am at home.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/cuenca/daily%20communication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>For my professional development, I attended the 2nd and 3rd Regional Congress for Future Administrative
+            Professionals (RCFAP), the Inter-Campus Symposium on Stenography 2025, and the Corporate Fashion Show, which
+            all held at CSPC Main Campus. These events provided me with opportunities to learn and enhance my skills in
+            stenography, professional communication, and corporate etiquette. Participating in these activities also
+            helped boost my confidence and prepare me for my future career as an administrative professional.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/cuenca/professional%20development%201.mp4" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><img src="resources/cuenca/professional%20development%202.jpg"
+                alt="Cuenca professional development 2"></div>
+            <div class="media-item"><img src="resources/cuenca/professional%20development%203.jpg"
+                alt="Cuenca professional development 3"></div>
+            <div class="media-item"><img src="resources/cuenca/professional%20development%204.jpg"
+                alt="Cuenca professional development 4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER: ESTA -->
+  <section class="member" id="esta">
+    <div class="member-grid">
+      <div class="member-photo reveal"><img src="resources/esta/profile.jpg" alt="Ryza Joy B. Esta"></div>
+      <div class="reveal reveal-delay-1">
+        <div class="member-name">Ryza Joy B. Esta</div>
+        <div class="member-role">Moana</div>
+        <div class="member-block">
+          <h4>About Me</h4>
+          <ul>
+            <li>Name: Ryza Joy Bobis Esta</li>
+            <li>Age: 20 years old</li>
+            <li>Birthday: August 17, 2005</li>
+            <li>Address: San Juan, Iriga City</li>
+            <li>Father's Name: Rodney D. Esta</li>
+            <li>Mother's Name: Judilyn B. Cepriano</li>
+          </ul>
+        </div>
+        <div class="member-block">
+          <h4>My Goal</h4>
+          <p>"Ang pangarap ko ay hindi para sa isang tao lang." My goals in life are not just for my own success, but
+            more importantly for my family - especially my single mom and my three siblings. I aspire to give back to my
+            mother for all the sacrifices she has made that shaped me into who I am today. More than that, I want to
+            provide a better life for her and for my three siblings. I do not have a specific dream job; instead, I
+            believe that whatever opportunity God gives me is the path I am meant to take. My aspirations are not
+            focused on myself alone - they are for my family. They serve as my main motivation to keep striving and to
+            continue moving forward despite life's challenges.</p>
+        </div>
+        <div class="member-block">
+          <h4>Talents and Hobbies</h4>
+          <p>My main hobby is doing household chores, as I find it more meaningful to spend my time helping at home
+            rather than using my cellphone. During my free time, I also enjoy playing with my three siblings because I
+            know that in the future, I may be away from them once I start working. That is why I want to cherish and
+            enjoy the time I still have with them now. I also enjoy dancing whenever I hear music, especially upbeat or
+            dance songs as it allows me to express joy and energy. These simple activities define how I spend my
+            personal time and help me maintain balance in my daily life.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/esta/hobbies%20and%20talent.mp4" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><video src="resources/esta/hobbies%20and%20talent%202.mp4" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><video src="resources/esta/hobbies%20and%20talent%203.mp4" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><video src="resources/esta/hobbies%20and%20talent%204.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course under Sir Andrian T. Hernandez, I learned that technology is more than
+            just gadgets - it plays a big role in how we think, communicate, and live daily. I became more aware of the
+            importance of using the internet responsibly, especially when it comes to privacy and online behavior. The
+            course also helped me understand how IT can improve productivity but can also be a distraction if not
+            managed well. Overall, it made me reflect on my own habits and encouraged me to be more disciplined and
+            mindful in using technology. In creating our electronic portfolio website, I learned how to balance
+            technical tasks with teamwork, which was not always easy. As the group leader, I had to manage our time,
+            assign responsibilities, and make sure everyone was doing their part. Through this experience, I truly
+            understood that leadership is not just about finishing the task, but also about supporting and guiding the
+            team. Despite the challenges, it helped me become more responsible, patient, and confident, and I realized
+            that being a leader is about leading the team forward, not being perfect.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>In my daily life, I rely on digital technology such as my smartphone and laptop for communication and
+            academic tasks. I use Facebook and Messenger to connect with my classmates, friends, and loved ones. For my
+            school requirements, I utilize platforms like Canva, Microsoft Office, Google Classroom, and Gmail for
+            creating, submitting, and receiving academic outputs. These digital tools help me stay connected, informed,
+            and productive in my daily activities as a student.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/esta/daily%20conmunication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>For my professional development, I participated in several seminars and activities including the 2nd and
+            3rd Regional Congress for Future Administrative Professionals (RCFAP), Water Search and Rescue (WASAR) 2025,
+            the Inter-Campus Symposium on Stenography 2025, and the Corporate Fashion Show, which all held at CSPC Main
+            Campus. These experiences helped me improve my knowledge, skills, and confidence as a future professional.
+            Overall, these seminars and activities contributed significantly to my personal growth and career
+            preparation.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/esta/professional%20development%201.jpg"
+                alt="Esta professional development 1"></div>
+            <div class="media-item"><img src="resources/esta/professional%20development%202.jpg"
+                alt="Esta professional development 2"></div>
+            <div class="media-item"><img src="resources/esta/professional%20development%203.jpg"
+                alt="Esta professional development 3"></div>
+            <div class="media-item"><img src="resources/esta/professional%20development%204.jpg"
+                alt="Esta professional development 4"></div>
+            <div class="media-item"><video src="resources/esta/professional%20development%205.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER: LERIA -->
+  <section class="member alt" id="leria">
+    <div class="member-grid">
+      <div class="member-photo reveal"><img src="resources/leria/profile.jpg" alt="Kennette P. Leria"></div>
+      <div class="reveal reveal-delay-1">
+        <div class="member-name">Kennette P. Leria</div>
+        <div class="member-role">Flynn</div>
+        <div class="member-block">
+          <h4>About Me</h4>
+          <ul>
+            <li>Name: Kennette Paranal Leria</li>
+            <li>Age: 21 years old</li>
+            <li>Birthday: December 30, 2004</li>
+            <li>Address: Sto. Domingo, Nabua, Camarines Sur</li>
+            <li>Father's Name: Saldy C. Leria</li>
+            <li>Mother's Name: Arlene P. Leria</li>
+          </ul>
+        </div>
+        <div class="member-block">
+          <h4>My Goal</h4>
+          <p>My goal as a student is to finish my studies and earn my diploma, pass the Civil Service Exam (CSE), and
+            get a good job. I also aim to become financially stable, have my own house and car, and reconcile with my
+            parents. I want to experience things I have not yet experienced, not only for myself but also for my
+            parents, so they can enjoy things they have never experienced even for a single day.</p>
+        </div>
+        <div class="member-block">
+          <h4>Talents and Hobbies</h4>
+          <p>My hobby is drawing using my imagination. I enjoy drawing on my sketchpad, especially anime characters and
+            other designs, while listening to my favorite music. My talent is singing. Whenever I hear music, I like to
+            sing along, and sometimes I record my voice on my phone when I have nothing to do or when I feel bored.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/leria/hobbies%20and%20talent.jpg" alt="Leria hobbies 1"></div>
+            <div class="media-item"><img src="resources/leria/hobbies%20and%20talent%202.jpg" alt="Leria hobbies 2">
+            </div>
+            <div class="media-item"><img src="resources/leria/hobbies%20and%20talent%203.jpg" alt="Leria hobbies 3">
+            </div>
+            <div class="media-item"><video src="resources/leria/hobbies%20and%20talent%204.mp4" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><img src="resources/leria/hobbies%20and%20talent%205.jpg" alt="Leria hobbies 5">
+            </div>
+            <div class="media-item"><img src="resources/leria/hobbies%20and%20talent%206.jpg" alt="Leria hobbies 6">
+            </div>
+            <div class="media-item"><video src="resources/leria/hobbies%20and%20talent%207.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course, I learned about how computers started and how they improved over time.
+            I also got to know the people behind these inventions, which made me appreciate technology more. Before, I
+            did not really think about how devices work, but now I understand the basics of hardware, software, and even
+            artificial intelligence. I see now how these technologies are part of my everyday life, like using my phone.
+            This subject helped me understand technology not just as a tool, but as something that keeps improving.
+            While creating this e-Portfolio website, I realized how important technology is in communication and
+            education. At first, I thought it was just a simple task, but it actually showed me how advanced technology
+            can be used creatively. I learned how to use my phone in a more productive way. Overall, this experience
+            helped me become more open to learning and adapting to modern technology.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>My daily communication tool is my cellphone. Through it, I communicate with my relatives and family using
+            applications installed on my phone, such as Contacts, Messages, Facebook, and Messenger. I also use my
+            cellphone for studying, completing tasks, collecting documents, and obtaining educational information.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/leria/daily%20communication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>I attended six seminars: the 2nd and 3rd Regional Congress for Future Administrative Professionals (RCFAP),
+            Water Search and Rescue (WASAR) 2025, ASOG Technology Business Incubator, Awareness Campaign, Inter-Campus
+            Symposium on Stenography 2025, and the Corporate Fashion Show. All of these were held at the CSPC Main
+            Campus. These seminars are vital for me because they helped enhance my knowledge, develop my skills, and
+            prepare me for my future career.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/leria/professional%20development%201.jpg"
+                alt="Leria professional development 1"></div>
+            <div class="media-item"><img src="resources/leria/professional%20development%202.jpg"
+                alt="Leria professional development 2"></div>
+            <div class="media-item"><img src="resources/leria/professional%20development%203.jpg"
+                alt="Leria professional development 3"></div>
+            <div class="media-item"><img src="resources/leria/professional%20development%204.jpg"
+                alt="Leria professional development 4"></div>
+            <div class="media-item"><video src="resources/leria/professional%20development%205.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER: LUDOVICE -->
+  <section class="member" id="ludovice">
+    <div class="member-grid">
+      <div class="member-photo reveal"><img src="resources/ludovice/profile.jpg" alt="Jasmin L. Ludovice"></div>
+      <div class="reveal reveal-delay-1">
+        <div class="member-name">Jasmin L. Ludovice</div>
+        <div class="member-role">Jasmine</div>
+        <div class="member-block">
+          <h4>About Me</h4>
+          <ul>
+            <li>Name: Jasmin L. Ludovice</li>
+            <li>Age: 20 years old</li>
+            <li>Birthday: December 2, 2005</li>
+            <li>Address: San Esteban, Nabua, Camarines Sur</li>
+            <li>Father's Name: Domingo L. Ludovice</li>
+            <li>Mother's Name: Jael L. Ludovice</li>
+          </ul>
+        </div>
+        <div class="member-block">
+          <h4>My Goal</h4>
+          <p>My goal as a student is to study well and improve my skills. I want to become more focused and responsible
+            in my schoolwork. I also aim to learn new things every day. I will do my best in every activity and
+            requirement. In the future, I hope to finish my studies and achieve my goals.</p>
+        </div>
+        <div class="member-block">
+          <h4>Talents and Hobbies</h4>
+          <p>One of my hobbies and talents is dancing. I enjoy expressing myself through different dance styles and
+            movements. I practice in my free time to improve my skills. Sometimes, I dance even when I feel bored
+            because it helps me feel more energetic and entertained. Dancing also helps me stay active and boosts my
+            confidence.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/ludovice/hobbies%20and%20talent.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>In this course, I learned how important technology is in both my studies and everyday life. I became more
+            aware that the internet can be helpful, but it can also cause problems if not used properly. Because of
+            this, I learned to be more careful and responsible when using social media and other platforms. I now think
+            more before I post or share anything online. This subject helped me become a more mindful and disciplined
+            user of technology. While creating this e-Portfolio website, I learned how to properly organize and present
+            my work. I also realized that small details really matter when presenting something. This experience helped
+            me become more creative and patient. It also made me understand how important it is to keep things simple,
+            clear, and neat.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>For my daily communication, I use my cellphone as my main technology. I stay connected through Messenger
+            and Facebook to chat with family and friends and check updates. I also use my cellphone to edit and complete
+            school projects and activities using Canva. These tools help me communicate easily and finish my tasks on
+            time. Overall, they make my daily life more convenient and organized.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/ludovice/daily%20communication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>I attended two seminars. These were the 2nd and 3rd Regional Congress for Future Administrative
+            Professionals (RCFAP). I also participated in the Corporate Fashion Show. All of these events were held at
+            the CSPC Main Campus. I enjoyed these experiences while also gaining new knowledge.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/ludovice/professional%20development%201.jpg"
+                alt="Ludovice professional development 1"></div>
+            <div class="media-item"><img src="resources/ludovice/professional%20development%202.jpg"
+                alt="Ludovice professional development 2"></div>
+            <div class="media-item"><img src="resources/ludovice/professional%20development%203.jpg"
+                alt="Ludovice professional development 3"></div>
+            <div class="media-item"><video src="resources/ludovice/professional%20development%204.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER: MONTE -->
+  <section class="member alt" id="monte">
+    <div class="member-grid">
+      <div class="member-photo reveal"><img src="resources/monte/profile.jpg" alt="Rosita A. Monte"></div>
+      <div class="reveal reveal-delay-1">
+        <div class="member-name">Rosita A. Monte</div>
+        <div class="member-role">Belle</div>
+        <div class="member-block">
+          <h4>About Me</h4>
+          <ul>
+            <li>Name: Rosita A. Monte</li>
+            <li>Age: 21 years old</li>
+            <li>Birthday: July 03, 2004</li>
+            <li>Address: San Vicente, Buhi, Camarines Sur</li>
+            <li>Father's Name: Elmer M. Monte</li>
+            <li>Mother's Name: Jocelyn A. Monte (+)</li>
+          </ul>
+        </div>
+        <div class="member-block">
+          <h4>My Goal</h4>
+          <p>As a student, my goal is to finish my studies and achieve my dreams in life. I want to improve my skills,
+            especially in communication and using technology. I also want to be more responsible and focused on my
+            studies. In the future, I hope to have a stable job and support my family. I will continue to do my best to
+            reach my goals.</p>
+        </div>
+        <div class="member-block">
+          <h4>Talents and Hobbies</h4>
+          <p>My hobby is drawing because it helps me express my ideas and creativity. I enjoy sketching whenever I have
+            free time since it makes me feel relaxed and less stressed. Drawing also helps me improve my focus and
+            attention to detail. I feel happy and proud whenever I finish an artwork. For me, drawing is not just a
+            hobby but also a way to show my talent.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/monte/hobbies%20and%20talent.jpg" alt="Monte hobbies 1"></div>
+            <div class="media-item"><img src="resources/monte/hobbiea%20and%20talent%202.jpg" alt="Monte hobbies 2">
+            </div>
+            <div class="media-item"><video src="resources/monte/hobbies%20and%20talent%203.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>The Living in the IT Era course made me realize how much technology affects my daily life. From
+            communication to decision-making, I noticed that I rely on it more than I thought. It also taught me the
+            importance of being responsible, especially when it comes to privacy and security. I learned that IT is not
+            just about using computers, but also about solving real-life problems. This subject helped me see how these
+            skills can be useful for my future. While creating this e-Portfolio website, I learned how to present myself
+            and my work in a more organized way. It was difficult at first, especially when I encountered errors, but I
+            did not give up. As I continued, I became more confident in fixing problems on my own. I also learned that
+            patience and attention to detail are very important. In the end, I felt proud because I saw my improvement
+            and hard work.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>In my daily life, I use my smartphone and laptop to communicate and complete my school tasks. I usually use
+            Facebook and Messenger to chat with my classmates and stay updated on announcements. For schoolwork, I use
+            Google Classroom and Gmail to submit activities and receive instructions from my teachers. I also use TikTok
+            during my free time, and sometimes I learn things from it. These apps help me stay connected, informed, and
+            productive every day.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/monte/daily%20communication1.MOV" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><video src="resources/monte/daily%20communication%202.MOV" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>For my professional development, I attended the 2nd and 3rd Regional Congress for Future Administrative
+            Professional (RCFAP), the Inter-Campus Symposium on Stenography 2025, and the Corporate Fashion Show. All of
+            these were held at the CSPC Main Campus. These events helped me learn new things and gain more confidence. I
+            was able to see how professionalism works in real situations. It also inspired me to improve myself and
+            prepare for my future career. These experiences are very helpful in my growth as a student.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/monte/professional%20development%201.jpg"
+                alt="Monte professional development 1"></div>
+            <div class="media-item"><img src="resources/monte/professional%20development%202.jpg"
+                alt="Monte professional development 2"></div>
+            <div class="media-item"><img src="resources/monte/professional%20development%203.jpg"
+                alt="Monte professional development 3"></div>
+            <div class="media-item"><img src="resources/monte/professional%20development%204.jpg"
+                alt="Monte professional development 4"></div>
+            <div class="media-item"><img src="resources/monte/professional%20development%205.jpg"
+                alt="Monte professional development 5"></div>
+            <div class="media-item"><video src="resources/monte/professional%20development%206.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER: QUEMADO -->
+  <section class="member" id="quemado">
+    <div class="member-grid">
+      <div class="member-photo reveal"><img src="resources/quemado/profile.jpg" alt="Stephanie G. Quemado">
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="member-name">Stephanie G. Quemado</div>
+        <div class="member-role">Anna</div>
+        <div class="member-block">
+          <h4>About Me</h4>
+          <ul>
+            <li>Name: Stephanie Gulpe Quemado</li>
+            <li>Age: 21 years old</li>
+            <li>Birthday: August 01, 2004</li>
+            <li>Address: Santa Isabel, Iriga City, Camarines Sur</li>
+            <li>Father's Name: Steven S. Quemado</li>
+            <li>Mother's Name: Josephine G. Quemado</li>
+          </ul>
+        </div>
+        <div class="member-block">
+          <h4>My Goal</h4>
+          <p>My goal is to graduate as a Bachelor of Science in Office Administration student with good academic
+            performance and achieve my dreams in life. I want to work hard and stay focused so I can build a successful
+            future, build a big house and support my family financially. Everything I do as a student is for my future
+            and for the people I love.</p>
+        </div>
+        <div class="member-block">
+          <h4>Talents and Hobbies</h4>
+          <p>One of my talents is singing because singing helps me build confidence and express myself better. I enjoy
+            practicing different songs to improve my voice and build my confidence when sometimes bored. Singing is not
+            just a hobby for me, but also a talent that I am proud of.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/quemado/hobbies%20and%20talent.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course, I realized how important technology is in everyday life, especially in
+            communication and education. I learned that using the internet comes with responsibility, such as protecting
+            privacy and being careful with what I share online. This course also helped me understand how to use digital
+            platforms more effectively. I became more aware of my digital footprint and how it can affect me. Overall,
+            it helped me think more critically when using technology. While creating this electronic portfolio website,
+            I learned how to present my work in a more organized and creative way. At first, it was a bit confusing, but
+            I slowly learned how to arrange everything properly. I also realized the importance of clear communication
+            when sharing information. This experience improved both my technical and organizational skills.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>My laptop is my daily communication tool, especially for school tasks and coordination. I use it to send
+            emails, join online classes, and communicate with classmates through messaging platforms. It helps me stay
+            organized by managing documents and important files. I also use it for researching information, creating
+            reports, and completing assignments efficiently. Through my laptop, I am able to attend and participate in
+            class discussions even when I am at home.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/quemado/daily%20communication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>My professional development is strengthened through my active participation in the Inter-Campus Symposium
+            on Stenography, the Corporate Fashion Show, and the 2nd and 3rd Regional Congress for Future Administrative
+            Professionals (RCFAP), which all held at CSPC Main Campus. These experiences enhance my technical skills,
+            boost my confidence, and develop my ability. Through these activities, I am preparing myself to become a
+            competent and professional office administrator in the future.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/quemado/professional%20development%201.jpg"
+                alt="Quemado professional development 1"></div>
+            <div class="media-item"><img src="resources/quemado/professional%20development%202.jpg"
+                alt="Quemado professional development 2"></div>
+            <div class="media-item"><img src="resources/quemado/professional%20development%203.jpg"
+                alt="Quemado professional development 3"></div>
+            <div class="media-item"><img src="resources/quemado/professional%20development%204.jpg"
+                alt="Quemado professional development 4"></div>
+            <div class="media-item"><video src="resources/quemado/professional%20development%205.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER: TALAGTAG -->
+  <section class="member alt" id="talagtag">
+    <div class="member-grid">
+      <div class="member-photo reveal"><img src="resources/talagtag/profile.jpg" alt="Missy Therese D. Talagtag"></div>
+      <div class="reveal reveal-delay-1">
+        <div class="member-name">Missy Therese D. Talagtag</div>
+        <div class="member-role">Aurora</div>
+        <div class="member-block">
+          <h4>About Me</h4>
+          <ul>
+            <li>Name: Missy Therese Denina Talagtag</li>
+            <li>Age: 21 years old</li>
+            <li>Birthday: January 17, 2005</li>
+            <li>Address: San Vicente, Bato, Camarines Sur</li>
+            <li>Father's Name: Diego S. Talagtag</li>
+            <li>Mother's Name: Porfiria D. Talagtag (+)</li>
+          </ul>
+        </div>
+        <div class="member-block">
+          <h4>My Goal</h4>
+          <p>As a student, my primary goal is to successfully complete my education and earn a degree that will help me
+            build a stable future. I aim to develop my skills, expand my knowledge, and become more responsible and
+            disciplined in my studies. I believe that through education, I will be able to achieve financial stability,
+            meet my personal needs, and support my loved ones. Although life may present challenges, I am determined to
+            remain focused and committed to reaching my goals. At the same time, I strive to appreciate the journey and
+            continue engaging in activities that bring me fulfillment and happiness.</p>
+        </div>
+        <div class="member-block">
+          <h4>Talents and Hobbies</h4>
+          <p>I developed an interest in dancing at a young age; however, due to limited practice and a lack of
+            confidence in my abilities, I gradually shifted my focus to drawing and sketching as a means of
+            self-expression. Nevertheless, I am grateful to have developed skills in both dancing and drawing, which I
+            continue to value in the present time.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/talagtag/hobbies%20and%20talent.jpg" alt="Talagtag hobbies 1">
+            </div>
+            <div class="media-item"><video src="resources/talagtag/hobbies%20and%20talent.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course, I gained a better understanding of how technology affects my daily
+            life. I noticed how it helps make tasks easier, especially in communication and schoolwork. I also learned
+            the importance of being responsible, such as protecting personal data and using information properly. This
+            course made me realize that technology keeps changing, so I need to keep learning as well. Moreover, the
+            course helped me become more aware and responsible as a user. While creating this electronic portfolio
+            website, I learned that teamwork really matters because we had to rely on each other to finish our tasks on
+            time. I also realized that communication is important since small misunderstandings can affect our progress.
+            At first, I struggled with organizing my part, but I slowly learned how to improve it through practice and
+            feedback. In the end, I felt proud because I saw how our cooperation turned our work into a complete and
+            meaningful output.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>I primarily used my cellphone for my daily activities; however, since it is currently not functioning, I
+            now rely on my laptop to access the internet and stay updated through TikTok, Messenger, and Gmail. Although
+            a laptop is less portable and not as convenient to use in all situations, it remains a highly functional
+            tool. Most importantly, it allows me to accomplish my tasks efficiently, especially those related to my
+            academic responsibilities.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/talagtag/daily%20communication.MOV" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>For my professional development, I participated in several seminars and activities, including the 3rd
+            Regional Congress for Future Administrative Professionals, Water Search and Rescue 2025, and the Corporate
+            Fashion Show, which all held at CSPC Main Campus. These activities helped me sharpen my technical skills,
+            learn how to handle emergencies, and build the confidence I need to succeed in the workplace.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/talagtag/professional%20development%201.jpg"
+                alt="Talagtag professional development 1"></div>
+            <div class="media-item"><img src="resources/talagtag/professional%20development%202.jpg"
+                alt="Talagtag professional development 2"></div>
+            <div class="media-item"><img src="resources/talagtag/professional%20development%203.jpg"
+                alt="Talagtag professional development 3"></div>
+            <div class="media-item"><img src="resources/talagtag/professional%20development%204.jpg"
+                alt="Talagtag professional development 4"></div>
+            <div class="media-item"><video src="resources/talagtag/professional%20development%205.MOV" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="section-header reveal">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Get in <em>Touch</em> with Us</h2>
+      </div>
+      <p class="contact-desc reveal">We are proud to present this academic portfolio. For inquiries or collaborations,
+        reach out to our institution.</p>
+      <div class="contact-card reveal reveal-delay-1">
+        <p><strong>Camarines Sur Polytechnic Colleges</strong></p>
+        <p>San Miguel, Nabua, Camarines Sur 4434 Philippines</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Enchanted<span>Portfolio</span></div>
+    <div class="footer-copy">2026 - BSOA 3F - Living in the IT Era</div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button, .portrait-card').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        cursor.style.background = 'var(--gold)';
+        ring.style.width = '50px';
+        ring.style.height = '50px';
+        ring.style.opacity = '0.4';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '12px';
+        cursor.style.height = '12px';
+        cursor.style.background = 'var(--rose)';
+        ring.style.width = '36px';
+        ring.style.height = '36px';
+        ring.style.opacity = '0.6';
+      });
+    });
+
+    // Sparkles
+    const sparkleContainer = document.getElementById('sparkles');
+    const colors = ['#C8A951', '#C9637A', '#7B5EA7', '#A8D4E8', '#F5D0DA'];
+    function createSparkle() {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.bottom = '0';
+      s.style.background = colors[Math.floor(Math.random() * colors.length)];
+      const size = 3 + Math.random() * 6;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.animationDuration = (6 + Math.random() * 10) + 's';
+      s.style.animationDelay = Math.random() * 3 + 's';
+      sparkleContainer.appendChild(s);
+      setTimeout(() => s.remove(), 18000);
+    }
+    setInterval(createSparkle, 420);
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Loader
+    const siteLoader = document.getElementById('site-loader');
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (!siteLoader) return;
+        siteLoader.classList.add('fade-out');
+        siteLoader.addEventListener('transitionend', () => {
+          try { siteLoader.remove(); } catch (e) { /* ignore */ }
+        });
+      }, 350);
+    });
+  </script>
+</body>
+
+</html>

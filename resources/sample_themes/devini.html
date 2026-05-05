@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Portfolio | Princess Theme</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --royal-gold: #d4af37;
+            --glass-slipper-blue: #e3f2fd;
+            --rose-pink: #fce4ec;
+            --twilight-purple: #f3e5f5;
+            --midnight-text: #2c3e50;
+            --castle-white: rgba(255, 255, 255, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--rose-pink) 0%, var(--twilight-purple) 50%, var(--glass-slipper-blue) 100%);
+            color: var(--midnight-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sparkle Background Effect */
+        .sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle, #fff 10%, transparent 20%),
+                radial-gradient(circle, #fff 10%, transparent 20%);
+            background-size: 30px 30px, 40px 40px;
+            background-position: 0 0, 15px 15px;
+            opacity: 0.1;
+            z-index: 0;
+            animation: shimmer 5s infinite alternate;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.3; }
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+            color: var(--royal-gold);
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--castle-white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--royal-gold);
+        }
+
+        .logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--royal-gold);
+            cursor: pointer;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--midnight-text);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--royal-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--royal-gold);
+        }
+
+        /* Main Content Container */
+        main {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--castle-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        /* SPA Sections */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        #home {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--midnight-text);
+        }
+
+        #home p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--royal-gold), #ffeaa7);
+            color: var(--midnight-text);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem 0;
+        }
+
+        .mirror-frame {
+            width: 250px;
+            height: 350px;
+            border-radius: 125px 125px 10px 10px;
+            border: 8px solid var(--royal-gold);
+            background: #ccc;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .mirror-frame::before {
+            content: 'Image Placeholder';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Portfolio Section */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--twilight-purple);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--royal-gold);
+        }
+
+        .card h3 {
+            color: var(--royal-gold);
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--twilight-purple);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(255,255,255,0.8);
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--royal-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sparkles"></div>
+
+    <nav>
+        <div class="logo" onclick="navigate('home')">Once Upon a Time</div>
+        <ul class="nav-links">
+            <li><a onclick="navigate('home')" class="nav-link active" data-target="home">Home</a></li>
+            <li><a onclick="navigate('about')" class="nav-link" data-target="about">My Story</a></li>
+            <li><a onclick="navigate('portfolio')" class="nav-link" data-target="portfolio">Magical Works</a></li>
+            <li><a onclick="navigate('contact')" class="nav-link" data-target="contact">Royal Decree</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="page-section active">
+            <span class="cursive">Welcome to my kingdom</span>
+            <h1>Hi, I'm Princess Coder</h1>
+            <p>I weave magic into web applications, turning dreams and designs into beautiful, interactive realities. Step into my carriage and explore my digital kingdom.</p>
+            <button class="btn" onclick="navigate('portfolio')">View My Magic</button>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="page-section">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">My Story</h2>
+            <div class="about-content">
+                <div class="mirror-frame"></div>
+                <div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">A Tale of Code and Creativity</h3>
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">Much like spinning straw into gold, I take raw data and logic and spin them into seamless user experiences. With a background in fairy-tale aesthetics and modern web frameworks, I build enchanted applications.</p>
+                    <p style="line-height: 1.6;">When I'm not coding in my tower, you can find me reading magical tomes (documentation), singing to forest animals, or painting my next UI masterpiece.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="page-section">
+            <h2 style="text-align: center; font-size: 2.5rem;">Magical Works</h2>
+            <p style="text-align: center; color: #666; margin-top: 0.5rem;">Artifacts of my creation</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <span class="cursive">01</span>
+                    <h3>The Glass Slipper Store</h3>
+                    <p>An e-commerce platform built with React and Node.js, ensuring every user finds their perfect fit.</p>
+                    <a href="#" class="btn" style="padding: 5px 15px; font-size: 0.8rem;">View Realm</a>
+                </div>
+                <div class="card">
+                    <span class="cursive">02</span>
+                    <h3>Enchanted Rose Tracker</h3>
+                    <p>A habit-tracking app with a beautiful petal-falling UI, developed using Vue.js and Firebase.</p>
+                    <a href="#" class="btn" style="padding: 5px 15px; font-size: 0.8rem;">View Realm</a>
+                </div>
+                <div class="card">
+                    <span class="cursive">03</span>
+                    <h3>Magic Mirror AI</h3>
+                    <p>An intelligent chatbot application trained to give daily affirmations and weather updates.</p>
+                    <a href="#" class="btn" style="padding: 5px 15px; font-size: 0.8rem;">View Realm</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section">
+            <h2 style="text-align: center; font-size: 2.5rem;">Send a Royal Decree</h2>
+            <p style="text-align: center; color: #666; margin-top: 0.5rem;">Have a quest for me? Send a raven (or an email)!</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Your message has been sent via carriage!');">
+                <input type="text" placeholder="Your Noble Name" required>
+                <input type="email" placeholder="Your Magical Address (Email)" required>
+                <textarea rows="5" placeholder="Speak your mind..." required></textarea>
+                <button type="submit" class="btn" style="width: 100%;">Dispatch Message</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // Single Page Application Routing Logic
+        function navigate(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.add('active');
+            }
+
+            // Update nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('data-target') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

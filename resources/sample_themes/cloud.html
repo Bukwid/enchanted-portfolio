@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FutureRN — The Art & Science of Care</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #0D1B3E;
+  --navy-mid: #152752;
+  --navy-light: #1E3470;
+  --teal: #1B8CA8;
+  --teal-light: #A8D8E8;
+  --teal-pale: #EAF6FA;
+  --gold: #C8A951;
+  --gold-light: #F5E8C2;
+  --cream: #F8FBFD;
+  --white: #FFFFFF;
+  --slate: #4A5568;
+}
+
+html { scroll-behavior: smooth; }
+
+/* LOADER */
+#site-loader {
+  position: fixed; inset: 0; z-index: 3000;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  color: var(--white);
+}
+#site-loader .loader-inner { text-align: center; }
+#site-loader .loader-logo {
+  font-family: 'Cinzel', serif; font-size: 1.6rem;
+  letter-spacing: 0.2em; color: var(--white); margin-bottom: 0.4rem;
+}
+#site-loader .loader-logo span { color: var(--teal-light); }
+#site-loader .loader-tagline {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.1rem; color: var(--teal-light); margin-bottom: 1.4rem;
+}
+.loader-pulse {
+  width: 60px; height: 60px; margin: 0 auto;
+  border-radius: 50%; background: rgba(168,216,232,0.15);
+  display: flex; align-items: center; justify-content: center;
+  animation: pulseRing 1.6s ease-in-out infinite;
+  font-size: 1.8rem;
+}
+@keyframes pulseRing {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(168,216,232,0.4); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 18px rgba(168,216,232,0); }
+}
+#site-loader.fade-out { opacity: 0; pointer-events: none; transition: opacity 700ms ease; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CURSOR */
+.cursor {
+  position: fixed; width: 10px; height: 10px;
+  background: var(--teal); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+}
+.cursor-ring {
+  position: fixed; width: 34px; height: 34px;
+  border: 1.5px solid var(--teal-light); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease-out, width 0.2s, height 0.2s;
+  opacity: 0.5;
+}
+
+/* FLOATING PARTICLES */
+.particle-container { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.particle {
+  position: absolute; border-radius: 50%;
+  background: var(--teal-light); opacity: 0;
+  animation: floatParticle linear infinite;
+}
+@keyframes floatParticle {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.1; }
+  100% { transform: translateY(-40px) scale(1); opacity: 0; }
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 4rem;
+  background: rgba(13, 27, 62, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(168,216,232,0.2);
+}
+.nav-logo {
+  font-family: 'Cinzel', serif; font-size: 1.15rem;
+  color: var(--white); letter-spacing: 0.15em; text-decoration: none;
+}
+.nav-logo span { color: var(--teal-light); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: 'Nunito', sans-serif; font-size: 0.78rem;
+  font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75); text-decoration: none; position: relative;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1.5px; background: var(--teal-light); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--teal-light); }
+.nav-links a:hover::after { width: 100%; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0E2A4A 100%);
+}
+.hero-grid-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(168,216,232,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168,216,232,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-orb {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  filter: blur(80px); opacity: 0.18;
+}
+.hero-orb-1 { width: 500px; height: 500px; background: var(--teal); right: -100px; top: -100px; }
+.hero-orb-2 { width: 400px; height: 400px; background: #1A4A80; left: 40%; bottom: -100px; }
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 6rem; max-width: 720px;
+  animation: fadeInUp 1.1s ease forwards;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 0.68rem;
+  letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--teal-light); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '✦'; font-size: 0.55rem; color: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300; line-height: 1.05;
+  color: var(--white); margin-bottom: 0.4rem;
+}
+.hero-title em { font-style: italic; color: var(--teal-light); }
+
+.hero-subtitle {
+  font-family: 'Cinzel', serif; font-size: 0.9rem;
+  letter-spacing: 0.22em; color: var(--gold);
+  margin-bottom: 2rem; margin-top: 0.5rem;
+}
+
+.hero-desc {
+  font-size: 1rem; font-weight: 300; line-height: 1.9;
+  color: rgba(255,255,255,0.7); max-width: 500px; margin-bottom: 2.5rem;
+}
+
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  padding: 1rem 2.4rem;
+  background: transparent;
+  border: 1.5px solid var(--teal-light);
+  color: var(--teal-light);
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; cursor: none;
+  transition: background 0.3s, color 0.3s;
+}
+.hero-cta:hover { background: var(--teal-light); color: var(--navy); }
+
+.hero-badge {
+  position: absolute; right: 6rem; top: 50%;
+  transform: translateY(-50%);
+  width: 240px; height: 240px;
+  border: 1px solid rgba(168,216,232,0.25);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  animation: rotateBadge 20s linear infinite;
+}
+.hero-badge-inner {
+  text-align: center; color: var(--white);
+  animation: rotateBadge 20s linear infinite reverse;
+}
+.hero-badge-inner .badge-icon { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+.hero-badge-inner .badge-text {
+  font-family: 'Cormorant Garamond', serif; font-size: 0.85rem;
+  letter-spacing: 0.12em; color: var(--teal-light); line-height: 1.5;
+}
+@keyframes rotateBadge { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.hero-badge::before {
+  content: '';
+  position: absolute; inset: 15px;
+  border: 1px dashed rgba(168,216,232,0.18); border-radius: 50%;
+}
+
+/* REVEAL ANIMATIONS */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+
+/* SECTION SHARED */
+section { padding: 7rem 4rem; }
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-tag {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: 0.68rem;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 1rem;
+  padding: 0.35rem 1.2rem;
+  border: 1px solid rgba(27,140,168,0.3);
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 300; color: var(--navy); line-height: 1.15;
+}
+.section-title em { font-style: italic; color: var(--teal); }
+
+/* PHILOSOPHY / ABOUT */
+.philosophy {
+  background: var(--navy);
+  position: relative; overflow: hidden;
+}
+.philosophy .section-title { color: var(--white); }
+.philosophy .section-tag { color: var(--teal-light); border-color: rgba(168,216,232,0.3); }
+.philosophy-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  max-width: 1100px; margin: 0 auto;
+}
+.philosophy-text p {
+  font-size: 1.05rem; font-weight: 300; line-height: 2;
+  color: rgba(255,255,255,0.72); margin-bottom: 1.5rem;
+}
+.philosophy-pillars {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+}
+.pillar {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(168,216,232,0.15);
+  padding: 1.8rem 1.5rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.pillar:hover { border-color: rgba(168,216,232,0.4); background: rgba(168,216,232,0.06); }
+.pillar-icon { font-size: 1.8rem; margin-bottom: 0.8rem; display: block; }
+.pillar-title {
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--teal-light); margin-bottom: 0.5rem;
+}
+.pillar-desc { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+.philo-deco {
+  position: absolute; right: -80px; top: 50%;
+  transform: translateY(-50%);
+  width: 380px; height: 380px;
+  border-radius: 50%;
+  border: 1px solid rgba(168,216,232,0.07);
+}
+.philo-deco::before {
+  content: ''; position: absolute; inset: 30px;
+  border-radius: 50%; border: 1px solid rgba(168,216,232,0.07);
+}
+
+/* TEAM */
+.team { background: var(--cream); }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem; max-width: 1100px; margin: 0 auto;
+}
+.member-card {
+  background: var(--white);
+  border: 1px solid rgba(27,140,168,0.12);
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s;
+  cursor: none;
+}
+.member-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(13,27,62,0.12);
+  border-color: rgba(27,140,168,0.35);
+}
+.member-card-top {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  padding: 2rem; display: flex; align-items: center; gap: 1.4rem;
+  position: relative; overflow: hidden;
+}
+.member-card-top::after {
+  content: '';
+  position: absolute; bottom: -30px; right: -30px;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: rgba(168,216,232,0.08);
+}
+.member-avatar {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: rgba(168,216,232,0.15);
+  border: 2px solid rgba(168,216,232,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; flex-shrink: 0;
+}
+.member-name {
+  font-family: 'Cinzel', serif; font-size: 0.88rem;
+  letter-spacing: 0.08em; color: var(--white); line-height: 1.3;
+}
+.member-year {
+  font-size: 0.75rem; color: var(--teal-light);
+  margin-top: 0.3rem; font-weight: 300;
+}
+.member-card-body { padding: 1.6rem 2rem 2rem; }
+.member-goal-label {
+  font-family: 'Cinzel', serif; font-size: 0.65rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.5rem; display: block;
+}
+.member-goal {
+  font-size: 0.88rem; line-height: 1.75;
+  color: var(--slate); margin-bottom: 1.2rem;
+}
+.member-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.member-tag {
+  font-size: 0.7rem; padding: 0.25rem 0.7rem;
+  background: var(--teal-pale);
+  color: var(--teal); border: 1px solid rgba(27,140,168,0.2);
+  font-weight: 600; letter-spacing: 0.06em;
+}
+
+/* INSIGHTS */
+.insights { background: var(--navy); }
+.insights .section-title { color: var(--white); }
+.insights .section-tag { color: var(--teal-light); border-color: rgba(168,216,232,0.3); }
+.insights-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2rem; max-width: 1100px; margin: 0 auto;
+}
+.insight-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(168,216,232,0.15);
+  padding: 2.2rem 2rem;
+  transition: background 0.3s, border-color 0.3s;
+}
+.insight-card:hover {
+  background: rgba(168,216,232,0.07);
+  border-color: rgba(168,216,232,0.35);
+}
+.insight-quote {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.25rem; color: var(--teal-light);
+  line-height: 1.6; margin-bottom: 1.2rem;
+}
+.insight-quote::before { content: '"'; color: var(--gold); margin-right: 0.2rem; }
+.insight-quote::after { content: '"'; color: var(--gold); margin-left: 0.2rem; }
+.insight-author {
+  font-family: 'Cinzel', serif; font-size: 0.72rem;
+  letter-spacing: 0.15em; color: rgba(255,255,255,0.5);
+}
+
+/* GALLERY */
+.gallery { background: var(--cream); }
+.gallery-intro {
+  text-align: center; font-size: 1rem; font-weight: 300;
+  color: var(--slate); max-width: 560px; margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 1rem; max-width: 1100px; margin: 0 auto;
+}
+.gallery-item {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.35s ease;
+}
+.gallery-item:hover { transform: scale(1.02); }
+.gallery-item.wide { grid-column: span 2; }
+.gallery-item.tall { grid-row: span 2; aspect-ratio: auto; }
+.gallery-item-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(13,27,62,0.9) 0%, transparent 100%);
+  padding: 1.5rem 1.2rem 1rem;
+  font-family: 'Cinzel', serif; font-size: 0.72rem;
+  letter-spacing: 0.15em; color: var(--teal-light);
+  text-transform: uppercase;
+}
+
+/* CONTACT */
+.contact {
+  background: linear-gradient(135deg, var(--navy) 0%, #0E2A4A 100%);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.contact::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(168,216,232,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168,216,232,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.contact-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+.contact .section-title { color: var(--white); }
+.contact .section-tag { color: var(--teal-light); border-color: rgba(168,216,232,0.3); }
+.contact-desc {
+  font-size: 1rem; font-weight: 300; line-height: 1.9;
+  color: rgba(255,255,255,0.65); margin-bottom: 3rem;
+}
+.contact-info {
+  display: flex; flex-direction: column; gap: 1.2rem;
+  align-items: center; margin-bottom: 3rem;
+}
+.contact-item {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.92rem; color: rgba(255,255,255,0.7);
+}
+.contact-item span { color: var(--teal-light); font-weight: 600; }
+.contact-socials { display: flex; gap: 1.2rem; justify-content: center; }
+.contact-social {
+  width: 44px; height: 44px;
+  border: 1.5px solid rgba(168,216,232,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; text-decoration: none;
+  color: var(--teal-light);
+  transition: background 0.3s, border-color 0.3s;
+}
+.contact-social:hover { background: rgba(168,216,232,0.12); border-color: var(--teal-light); }
+
+/* FOOTER */
+footer {
+  background: var(--navy); border-top: 1px solid rgba(168,216,232,0.12);
+  padding: 2.5rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo {
+  font-family: 'Cinzel', serif; font-size: 1rem;
+  letter-spacing: 0.18em; color: var(--white);
+}
+.footer-logo span { color: var(--teal-light); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a {
+  font-size: 0.78rem; color: rgba(255,255,255,0.45);
+  text-decoration: none; transition: color 0.3s;
+  font-weight: 600; letter-spacing: 0.08em;
+}
+.footer-links a:hover { color: var(--teal-light); }
+.footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+/* DIVIDER */
+.divider {
+  display: flex; align-items: center; gap: 1.5rem;
+  max-width: 200px; margin: 0 auto 1rem;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(27,140,168,0.25);
+}
+.divider-icon { color: var(--gold); font-size: 0.7rem; }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="site-loader">
+  <div class="loader-inner">
+    <div class="loader-logo">FUTURE<span>RN</span></div>
+    <div class="loader-tagline">The Art & Science of Care</div>
+    <div class="loader-pulse">🩺</div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- PARTICLES -->
+<div class="particle-container" id="particles"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">FUTURE<span>RN</span></a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#insights">Insights</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Camarines Sur Polytechnic Colleges — College of Health Sciences</div>
+    <h1 class="hero-title">
+      The Art &<br><em>Science of Care</em>
+    </h1>
+    <p class="hero-subtitle">Bachelor of Science in Nursing · FutureRN</p>
+    <p class="hero-desc">
+      Protect, promote, restore, and maintain well-being through passion and dedication. We are nursing students committed to giving optimal health — touching lives with knowledge, empathy, and purpose.
+    </p>
+    <a href="#team" class="hero-cta">✦ &nbsp;Meet Our Team&nbsp; ✦</a>
+  </div>
+
+  <div class="hero-badge">
+    <div class="hero-badge-inner">
+      <span class="badge-icon">🏥</span>
+      <div class="badge-text">Hello<br>Future<br>Nurses!</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-header reveal">
+      <span class="section-tag">Our Foundation</span>
+      <h2 class="section-title">The <em>Philosophy</em> of Healthcare</h2>
+    </div>
+    <div class="philosophy-grid">
+      <div class="philosophy-text reveal">
+        <p>
+          Healthcare providers aim to improve the physical, emotional, social, and spiritual health of every individual. The goal is to give optimal health through passion and dedication — guiding every patient toward wholeness.
+        </p>
+        <p>
+          We believe in a holistic approach where every nurse becomes not just a caregiver but an advocate, an educator, and a source of comfort for those in need.
+        </p>
+        <div class="divider"><span class="divider-icon">✦</span></div>
+        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.2rem; color:rgba(255,255,255,0.55); line-height:1.7;">
+          "Nursing is an art: and if it is to be made an art, it requires as exclusive a devotion, as hard a preparation, as any painter's or sculptor's work."
+        </p>
+      </div>
+      <div class="philosophy-pillars reveal reveal-delay-1">
+        <div class="pillar">
+          <span class="pillar-icon">🛡️</span>
+          <div class="pillar-title">Protect</div>
+          <div class="pillar-desc">Safeguard every individual, ensuring their needs and rights are upheld with integrity.</div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🌱</span>
+          <div class="pillar-title">Promote</div>
+          <div class="pillar-desc">Champion the importance of health through education, awareness, and community engagement.</div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">💊</span>
+          <div class="pillar-title">Restore</div>
+          <div class="pillar-desc">Provide clients with evidence-based treatment, guiding them back to their fullest potential.</div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">❤️</span>
+          <div class="pillar-title">Maintain</div>
+          <div class="pillar-desc">Sustain well-being through compassionate comfort and continuous, patient-centered care.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="philo-deco"></div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="section-header reveal">
+    <span class="section-tag">The People Behind The Mission</span>
+    <h2 class="section-title">Our <em>Team</em></h2>
+    <p style="font-size:0.95rem;color:var(--slate);margin-top:1rem;font-weight:300;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.8;">
+      Seven nursing students from CSPC, united by one vision — to uplift healthcare through technology, compassion, and dedication.
+    </p>
+  </div>
+
+  <div class="team-grid">
+
+    <div class="member-card reveal">
+      <div class="member-card-top">
+        <div class="member-avatar">👨‍⚕️</div>
+        <div>
+          <div class="member-name">Rogelio A. Bermido</div>
+          <div class="member-year">2nd Year BSN · CSPC</div>
+        </div>
+      </div>
+      <div class="member-card-body">
+        <span class="member-goal-label">My Goal</span>
+        <p class="member-goal">To develop a strong foundation in clinical knowledge and hands-on skills, mastering essential nursing procedures while fostering a compassionate, patient-centered approach to care.</p>
+        <div class="member-tags">
+          <span class="member-tag">Dancing</span>
+          <span class="member-tag">Selling Books</span>
+          <span class="member-tag">Entrepreneurship</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="member-card reveal reveal-delay-1">
+      <div class="member-card-top">
+        <div class="member-avatar">👩‍⚕️</div>
+        <div>
+          <div class="member-name">Bernadette Faith D. Chavez</div>
+          <div class="member-year">19 yrs · Pili, Camarines Sur</div>
+        </div>
+      </div>
+      <div class="member-card-body">
+        <span class="member-goal-label">My Goal</span>
+        <p class="member-goal">To graduate from the BSN program and fulfill all my dreams — give back to my parents, help my cousins still studying, and eventually create my own business.</p>
+        <div class="member-tags">
+          <span class="member-tag">Reading</span>
+          <span class="member-tag">Music</span>
+          <span class="member-tag">Movies</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="member-card reveal reveal-delay-2">
+      <div class="member-card-top">
+        <div class="member-avatar">📷</div>
+        <div>
+          <div class="member-name">Ma. Yvette Francia G. Escuro</div>
+          <div class="member-year">20 yrs · Photojournalist, The Cortex</div>
+        </div>
+      </div>
+      <div class="member-card-body">
+        <span class="member-goal-label">My Goal</span>
+        <p class="member-goal">To finish this course, provide healthcare to fellow Filipinos, and work abroad to fulfill my dream of serving communities outside the Philippines.</p>
+        <div class="member-tags">
+          <span class="member-tag">Traveling</span>
+          <span class="member-tag">Singing</span>
+          <span class="member-tag">Photography</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="member-card reveal">
+      <div class="member-card-top">
+        <div class="member-avatar">☕</div>
+        <div>
+          <div class="member-name">Keisha Sabryn L. Mediado</div>
+          <div class="member-year">20 yrs · Deputy Ethical Standards Officer</div>
+        </div>
+      </div>
+      <div class="member-card-body">
+        <span class="member-goal-label">My Goal</span>
+        <p class="member-goal">To graduate, be licensed, and uphold my oath — to help every human regardless of status, because everyone deserves to be free from pain and illness.</p>
+        <div class="member-tags">
+          <span class="member-tag">Painting</span>
+          <span class="member-tag">Instruments</span>
+          <span class="member-tag">Coffee Hopping</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="member-card reveal reveal-delay-1">
+      <div class="member-card-top">
+        <div class="member-avatar">🎨</div>
+        <div>
+          <div class="member-name">Zofia Isabelle C. Mendenilla</div>
+          <div class="member-year">20 yrs · Following her mother's path</div>
+        </div>
+      </div>
+      <div class="member-card-body">
+        <span class="member-goal-label">My Goal</span>
+        <p class="member-goal">To make my family proud, repay their sacrifices, and be a nurse known for skill and compassion — just like my mother who inspired this journey.</p>
+        <div class="member-tags">
+          <span class="member-tag">Digital Art</span>
+          <span class="member-tag">Photography</span>
+          <span class="member-tag">Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="member-card reveal reveal-delay-2">
+      <div class="member-card-top">
+        <div class="member-avatar">🎸</div>
+        <div>
+          <div class="member-name">Alfredo O. Sasota Jr.</div>
+          <div class="member-year">20 yrs · Keep smiling!</div>
+        </div>
+      </div>
+      <div class="member-card-body">
+        <span class="member-goal-label">My Goal</span>
+        <p class="member-goal">To provide care to people, promote good health, and maintain the well-being of my family, community, and country as a registered nurse.</p>
+        <div class="member-tags">
+          <span class="member-tag">Guitar</span>
+          <span class="member-tag">Singing</span>
+          <span class="member-tag">Travelling</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="member-card reveal" style="grid-column: 1 / -1; max-width: 340px; margin: 0 auto;">
+      <div class="member-card-top">
+        <div class="member-avatar">🎹</div>
+        <div>
+          <div class="member-name">Rachel Ann R. Sernal</div>
+          <div class="member-year">20 yrs · Bula, Camarines Sur</div>
+        </div>
+      </div>
+      <div class="member-card-body">
+        <span class="member-goal-label">My Goal</span>
+        <p class="member-goal">To graduate, become a fully-fledged registered nurse, and give back to my parents for every sacrifice and effort they made for me.</p>
+        <div class="member-tags">
+          <span class="member-tag">Electric Keyboard</span>
+          <span class="member-tag">Photography</span>
+          <span class="member-tag">Scenery</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insights" id="insights">
+  <div class="section-header reveal">
+    <span class="section-tag">Reflections on IT & Nursing</span>
+    <h2 class="section-title">Our <em>Insights</em></h2>
+  </div>
+  <div class="insights-grid" style="max-width:1100px;margin:0 auto;">
+    <div class="insight-card reveal">
+      <div class="insight-quote">Technology plays a crucial role in making healthcare more accessible and efficient — from electronic records to tele-health, IT is reshaping patient outcomes.</div>
+      <div class="insight-author">— Rogelio A. Bermido</div>
+    </div>
+    <div class="insight-card reveal reveal-delay-1">
+      <div class="insight-quote">ICT enables nurses to access patient information from anywhere, while online training keeps us updated on the latest best practices and research in nursing.</div>
+      <div class="insight-author">— Bernadette Faith D. Chavez</div>
+    </div>
+    <div class="insight-card reveal reveal-delay-2">
+      <div class="insight-quote">Building a website taught us that IT is not just a tool — it is a canvas for expressing who we are, where we are going, and what we stand for as future nurses.</div>
+      <div class="insight-author">— Ma. Yvette Francia G. Escuro</div>
+    </div>
+    <div class="insight-card reveal">
+      <div class="insight-quote">IT enhances patient care, streamlines workflows, and connects healthcare professionals across distances — making every nurse's daily work more impactful.</div>
+      <div class="insight-author">— Keisha Sabryn L. Mediado</div>
+    </div>
+    <div class="insight-card reveal reveal-delay-1">
+      <div class="insight-quote">Building a website seemed simple, but every small change triggered a series of modifications — a cycle of trial and error that taught us we all learn by trying.</div>
+      <div class="insight-author">— Zofia Isabelle C. Mendenilla</div>
+    </div>
+    <div class="insight-card reveal reveal-delay-2">
+      <div class="insight-quote">Nothing is easy without taking the time to understand it. This subject taught us to embrace new technology and discover how it can help in our chosen profession.</div>
+      <div class="insight-author">— Alfredo O. Sasota Jr.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-header reveal">
+    <span class="section-tag">Our Journey in Pictures</span>
+    <h2 class="section-title">The <em>Gallery</em></h2>
+  </div>
+  <p class="gallery-intro reveal">
+    A collection of photos capturing what we do as student nurses — our achievements, clinical experiences, and the progress we've made since entering this course.
+  </p>
+  <div class="gallery-grid" style="max-width:1100px;margin:0 auto;">
+    <div class="gallery-item wide reveal">
+      <span>🏥</span>
+      <div class="gallery-item-label">Clinical Practice</div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <span>🎓</span>
+      <div class="gallery-item-label">Academics</div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <span>🩺</span>
+      <div class="gallery-item-label">Skills Lab</div>
+    </div>
+    <div class="gallery-item wide reveal reveal-delay-2">
+      <span>👥</span>
+      <div class="gallery-item-label">Team Photos</div>
+    </div>
+    <div class="gallery-item reveal">
+      <span>💉</span>
+      <div class="gallery-item-label">Return Demos</div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <span>🌟</span>
+      <div class="gallery-item-label">Achievements</div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <span>🕯️</span>
+      <div class="gallery-item-label">Capping Ceremony</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Get in Touch With Us</span>
+      <h2 class="section-title">Connect <em>&amp; Inspire</em></h2>
+    </div>
+    <p class="contact-desc reveal">
+      We built this space to communicate, inspire, and uplift nurses and future healthcare professionals. Reach out, and let's grow together.
+    </p>
+    <div class="contact-info reveal">
+      <div class="contact-item">📍 &nbsp;<span>San Miguel, Nabua, Camarines Sur 4434, Philippines</span></div>
+      <div class="contact-item">🏫 &nbsp;<span>Camarines Sur Polytechnic Colleges — College of Health Sciences</span></div>
+      <div class="contact-item">📚 &nbsp;<span>Bachelor of Science in Nursing · 2nd Year</span></div>
+    </div>
+    <div class="contact-socials reveal reveal-delay-1">
+      <a href="#" class="contact-social">f</a>
+      <a href="#" class="contact-social">📷</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">FUTURE<span>RN</span></div>
+  <div class="footer-links">
+    <a href="#philosophy">Philosophy</a>
+    <a href="#team">Team</a>
+    <a href="#insights">Insights</a>
+    <a href="#gallery">Gallery</a>
+  </div>
+  <div class="footer-copy">© 2025 FutureRN · CSPC College of Health Sciences · Crafted with care</div>
+</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.1;
+  ringY += (mouseY - ringY) * 0.1;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, .member-card, .pillar').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '18px';
+    cursor.style.height = '18px';
+    cursor.style.background = '#C8A951';
+    ring.style.width = '48px'; ring.style.height = '48px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '10px';
+    cursor.style.height = '10px';
+    cursor.style.background = 'var(--teal)';
+    ring.style.width = '34px'; ring.style.height = '34px';
+  });
+});
+
+// Particles
+const pc = document.getElementById('particles');
+function createParticle() {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = 2 + Math.random() * 5;
+  p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}vw;bottom:0;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*4}s;opacity:0;`;
+  pc.appendChild(p);
+  setTimeout(() => p.remove(), 22000);
+}
+setInterval(createParticle, 500);
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Loader
+const loader = document.getElementById('site-loader');
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    loader.classList.add('fade-out');
+    loader.addEventListener('transitionend', () => { try { loader.remove(); } catch(e){} });
+  }, 500);
+});
+</script>
+</body>
+</html>
