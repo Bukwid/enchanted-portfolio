@@ -678,12 +678,6 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .portrait-card-main {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-
     .portrait-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 50px rgba(201, 99, 122, 0.15);
@@ -718,50 +712,6 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--lavender);
-    }
-
-    .portrait-social {
-      display: flex;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 0 1.2rem 1.2rem;
-    }
-
-    .portrait-social-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      border: 1px solid var(--rose-light);
-      background: var(--rose-pale);
-      color: var(--rose);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .portrait-social-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(201, 99, 122, 0.18);
-    }
-
-    .portrait-social-link svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-
-    .portraits-emblem {
-      display: flex;
-      justify-content: center;
-      margin: -1rem 0 2.5rem;
-    }
-
-    .portraits-emblem img {
-      width: min(900px, 92vw);
-      max-width: 100%;
-      height: auto;
-      filter: drop-shadow(0 16px 24px rgba(201, 99, 122, 0.2));
     }
 
     /* MEMBER SECTIONS */
@@ -824,7 +774,6 @@
       grid-column: 1 / -1;
     }
 
-
     .member-block {
       background: white;
       border-radius: 1.2rem;
@@ -869,7 +818,7 @@
 
     .media-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin-top: 1.2rem;
     }
@@ -905,7 +854,7 @@
     .media-item video {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
       background: #1A1030;
@@ -953,26 +902,13 @@
       color: #4A3860;
     }
 
-    .contact-card a {
-      color: var(--rose);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .contact-card a:hover {
-      text-decoration: underline;
-    }
-
     /* FOOTER */
     footer {
       background: var(--midnight);
       padding: 3rem 6rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1.2rem;
-      text-align: center;
+      justify-content: space-between;
     }
 
     .footer-logo {
@@ -989,84 +925,6 @@
     .footer-copy {
       font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.4);
-    }
-
-    .footer-copy span {
-      display: block;
-    }
-
-    .footer-banner {
-      width: min(780px, 90vw);
-      height: auto;
-      opacity: 0.9;
-    }
-
-    .footer-copyright {
-      color: rgba(255, 255, 255, 0.6);
-      margin-top: 0.35rem;
-    }
-
-    .profile-nav {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      z-index: 120;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .profile-nav.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(10px);
-    }
-
-    .profile-nav-btn {
-      width: 46px;
-      height: 46px;
-      border-radius: 999px;
-      border: 1px solid var(--rose-light);
-      background: white;
-      color: var(--midnight);
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 12px 28px rgba(201, 99, 122, 0.18);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .profile-nav-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .profile-nav-btn svg polygon {
-      fill: currentColor;
-      stroke: none;
-    }
-
-    .profile-nav-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 32px rgba(201, 99, 122, 0.22);
-    }
-
-    .profile-nav-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: 0 10px 24px rgba(201, 99, 122, 0.12);
     }
 
     /* Scroll reveal */
@@ -1139,7 +997,9 @@
       }
 
       footer {
-        padding: 2.5rem 2rem;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
       }
     }
 
@@ -1153,7 +1013,7 @@
       }
     }
   </style>
-  <!-- <script src="https://pl29341395.profitablecpmratenetwork.com/63/b1/9e/63b19e2d3a37c7025e833ebbc8b43586.js"></script> -->
+  <script src="https://pl29341395.profitablecpmratenetwork.com/63/b1/9e/63b19e2d3a37c7025e833ebbc8b43586.js"></script>
 </head>
 
 <body>
@@ -1319,165 +1179,55 @@
       <span class="section-tag">Royal Portraits</span>
       <h2 class="section-title">Meet the <em>Princesses</em> and Their Prince</h2>
     </div>
-    <div class="portraits-emblem reveal reveal-delay-1">
-      <img src="resources/gp_no_bg.png" alt="Group portrait emblem">
-    </div>
     <div class="portraits-grid">
-      <div class="portrait-card reveal">
-        <a class="portrait-card-main" href="#brutas" aria-label="View Ivy O. Brutas profile">
-          <div class="portrait-thumb"><img src="resources/brutas/profile2.jpg" alt="Ivy O. Brutas"></div>
-          <div class="portrait-info">
-            <h3>Ivy O. Brutas</h3><span>Elsa</span>
-          </div>
-        </a>
-        <div class="portrait-social" aria-label="Ivy O. Brutas social links">
-          <a class="portrait-social-link" href="https://www.facebook.com/ivy.ongogbrutas.1" target="_blank" rel="noopener" aria-label="Ivy O. Brutas on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
-            </svg>
-          </a>
-          <a class="portrait-social-link" href="https://www.instagram.com/miss.viiiy?igsh=MTlsemxrejRlM3U0Zg==" target="_blank" rel="noopener" aria-label="Ivy O. Brutas on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM17.2 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </a>
+      <a class="portrait-card reveal" href="#brutas">
+        <div class="portrait-thumb"><img src="resources/brutas/profile2.jpg" alt="Ivy O. Brutas"></div>
+        <div class="portrait-info">
+          <h3>Ivy O. Brutas</h3><span>Elsa</span>
         </div>
-      </div>
-      <div class="portrait-card reveal reveal-delay-1">
-        <a class="portrait-card-main" href="#cuenca" aria-label="View Grace B. Cuenca profile">
-          <div class="portrait-thumb"><img src="resources/cuenca/profile.jpg" alt="Grace B. Cuenca"></div>
-          <div class="portrait-info">
-            <h3>Grace B. Cuenca</h3><span>Cinderella</span>
-          </div>
-        </a>
-        <div class="portrait-social" aria-label="Grace B. Cuenca social links">
-          <a class="portrait-social-link" href="https://www.facebook.com/grace.bagacinacuenca.1" target="_blank" rel="noopener" aria-label="Grace B. Cuenca on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
-            </svg>
-          </a>
-          <a class="portrait-social-link" href="https://www.instagram.com/its_me_gracia03?igsh=bjF3eXpsamYxOTl2" target="_blank" rel="noopener" aria-label="Grace B. Cuenca on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM17.2 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </a>
+      </a>
+      <a class="portrait-card reveal reveal-delay-1" href="#cuenca">
+        <div class="portrait-thumb"><img src="resources/cuenca/profile.jpg" alt="Grace B. Cuenca"></div>
+        <div class="portrait-info">
+          <h3>Grace B. Cuenca</h3><span>Cinderella</span>
         </div>
-      </div>
-      <div class="portrait-card reveal reveal-delay-2">
-        <a class="portrait-card-main" href="#esta" aria-label="View Ryza Joy B. Esta profile">
-          <div class="portrait-thumb"><img src="resources/esta/profile2.jpg" alt="Ryza Joy B. Esta"></div>
-          <div class="portrait-info">
-            <h3>Ryza Joy B. Esta</h3><span>Moana</span>
-          </div>
-        </a>
-        <div class="portrait-social" aria-label="Ryza Joy B. Esta social links">
-          <a class="portrait-social-link" href="https://www.facebook.com/ndiqanakmgakapatidkoh" target="_blank" rel="noopener" aria-label="Ryza Joy B. Esta on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
-            </svg>
-          </a>
-          <a class="portrait-social-link" href="https://www.instagram.com/esta.tiks?igsh=MTdtaXZnYWo4bzc1Ng==" target="_blank" rel="noopener" aria-label="Ryza Joy B. Esta on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM17.2 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </a>
+      </a>
+      <a class="portrait-card reveal reveal-delay-2" href="#esta">
+        <div class="portrait-thumb"><img src="resources/esta/profile2.jpg" alt="Ryza Joy B. Esta"></div>
+        <div class="portrait-info">
+          <h3>Ryza Joy B. Esta</h3><span>Moana</span>
         </div>
-      </div>
-      <div class="portrait-card reveal">
-        <a class="portrait-card-main" href="#leria" aria-label="View Kennette P. Leria profile">
-          <div class="portrait-thumb"><img src="resources/leria/profile.jpg" alt="Kennette P. Leria"></div>
-          <div class="portrait-info">
-            <h3>Kennette P. Leria</h3><span>Flynn</span>
-          </div>
-        </a>
-        <div class="portrait-social" aria-label="Kennette P. Leria social links">
-          <a class="portrait-social-link" href="https://www.facebook.com/kennette.leria" target="_blank" rel="noopener" aria-label="Kennette P. Leria on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
-            </svg>
-          </a>
-          <a class="portrait-social-link" href="https://www.instagram.com/kendontluvgirls_04?igsh=MWQzNDRmandqaGgzZQ==" target="_blank" rel="noopener" aria-label="Kennette P. Leria on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM17.2 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </a>
+      </a>
+      <a class="portrait-card reveal" href="#leria">
+        <div class="portrait-thumb"><img src="resources/leria/profile.jpg" alt="Kennette P. Leria"></div>
+        <div class="portrait-info">
+          <h3>Kennette P. Leria</h3><span>Flynn</span>
         </div>
-      </div>
-      <div class="portrait-card reveal reveal-delay-1">
-        <a class="portrait-card-main" href="#ludovice" aria-label="View Jasmin L. Ludovice profile">
-          <div class="portrait-thumb"><img src="resources/ludovice/profile2.jpg" alt="Jasmin L. Ludovice"></div>
-          <div class="portrait-info">
-            <h3>Jasmin L. Ludovice</h3><span>Jasmine</span>
-          </div>
-        </a>
-        <div class="portrait-social" aria-label="Jasmin L. Ludovice social links">
-          <a class="portrait-social-link" href="https://www.facebook.com/jasmin.llabres.ludovice" target="_blank" rel="noopener" aria-label="Jasmin L. Ludovice on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
-            </svg>
-          </a>
-          <a class="portrait-social-link" href="https://www.instagram.com/chaminchin?igsh=eDVkdnAzbzc3ZmNv" target="_blank" rel="noopener" aria-label="Jasmin L. Ludovice on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM17.2 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </a>
+      </a>
+      <a class="portrait-card reveal reveal-delay-1" href="#ludovice">
+        <div class="portrait-thumb"><img src="resources/ludovice/profile2.jpg" alt="Jasmin L. Ludovice"></div>
+        <div class="portrait-info">
+          <h3>Jasmin L. Ludovice</h3><span>Jasmine</span>
         </div>
-      </div>
-      <div class="portrait-card reveal reveal-delay-2">
-        <a class="portrait-card-main" href="#monte" aria-label="View Rosita A. Monte profile">
-          <div class="portrait-thumb"><img src="resources/monte/profile.jpg" alt="Rosita A. Monte"></div>
-          <div class="portrait-info">
-            <h3>Rosita A. Monte</h3><span>Belle</span>
-          </div>
-        </a>
-        <div class="portrait-social" aria-label="Rosita A. Monte social links">
-          <a class="portrait-social-link" href="https://www.facebook.com/rosita.monte.56?mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Rosita A. Monte on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
-            </svg>
-          </a>
-          <a class="portrait-social-link" href="https://www.instagram.com/its_sitamonte?igsh=dDUzYjlzOWxzeGJ4&utm_source=qr" target="_blank" rel="noopener" aria-label="Rosita A. Monte on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM17.2 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </a>
+      </a>
+      <a class="portrait-card reveal reveal-delay-2" href="#monte">
+        <div class="portrait-thumb"><img src="resources/monte/profile.jpg" alt="Rosita A. Monte"></div>
+        <div class="portrait-info">
+          <h3>Rosita A. Monte</h3><span>Belle</span>
         </div>
-      </div>
-      <div class="portrait-card reveal">
-        <a class="portrait-card-main" href="#quemado" aria-label="View Stephanie G. Quemado profile">
-          <div class="portrait-thumb"><img src="resources/quemado/profile2.jpg" alt="Stephanie G. Quemado"></div>
-          <div class="portrait-info">
-            <h3>Stephanie G. Quemado</h3><span>Anna</span>
-          </div>
-        </a>
-        <div class="portrait-social" aria-label="Stephanie G. Quemado social links">
-          <a class="portrait-social-link" href="https://www.facebook.com/stephanie.quemado" target="_blank" rel="noopener" aria-label="Stephanie G. Quemado on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
-            </svg>
-          </a>
-          <a class="portrait-social-link" href="https://www.instagram.com/shhhh_8014?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Stephanie G. Quemado on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM17.2 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </a>
+      </a>
+      <a class="portrait-card reveal" href="#quemado">
+        <div class="portrait-thumb"><img src="resources/quemado/profile2.jpg" alt="Stephanie G. Quemado"></div>
+        <div class="portrait-info">
+          <h3>Stephanie G. Quemado</h3><span>Anna</span>
         </div>
-      </div>
-      <div class="portrait-card reveal reveal-delay-1">
-        <a class="portrait-card-main" href="#talagtag" aria-label="View Missy Therese D. Talagtag profile">
-          <div class="portrait-thumb"><img src="resources/talagtag/profile.jpg" alt="Missy Therese D. Talagtag"></div>
-          <div class="portrait-info">
-            <h3>Missy Therese D. Talagtag</h3><span>Aurora</span>
-          </div>
-        </a>
-        <div class="portrait-social" aria-label="Missy Therese D. Talagtag social links">
-          <a class="portrait-social-link" href="https://www.facebook.com/missytalagtag" target="_blank" rel="noopener" aria-label="Missy Therese D. Talagtag on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
-            </svg>
-          </a>
+      </a>
+      <a class="portrait-card reveal reveal-delay-1" href="#talagtag">
+        <div class="portrait-thumb"><img src="resources/talagtag/profile.jpg" alt="Missy Therese D. Talagtag"></div>
+        <div class="portrait-info">
+          <h3>Missy Therese D. Talagtag</h3><span>Aurora</span>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -1500,7 +1250,7 @@
           </ul>
         </div>
         <div class="member-block">
-          <h4>My Goals</h4>
+          <h4>My Goal</h4>
           <p>My happiness comes from my strong connection with my family, which I consider my true success. I aim to
             achieve success not only for personal growth but also to prove my abilities to the people who matter most.
             Despite doubts from others, I am motivated to work hard and show my worth. I am deeply grateful for my
@@ -1509,7 +1259,31 @@
             future for my family.</p>
         </div>
         <div class="member-block">
-          <h4>My Daily Communication</h4>
+          <h4>Talents and Hobbies</h4>
+          <p>Dancing is my passion and my way to fight loneliness while staying at home. Whenever I feel alone or sad,
+            it serves as my companion and helps me express my emotions through movement. It turns my quiet and empty
+            days into something happy and meaningful. Truly, dancing is my source of joy and strength that keeps me
+            company even when I am by myself.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/brutas/hobby%20and%20talent.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>The Living in the IT Era course helped me understand technology in a way that actually makes sense in my daily life. 
+            Before, I only used gadgets without really knowing how they worked, 
+            but now I understand the difference between IT and ICT and how hardware, software, and people all work together. 
+            I also found it interesting how simple things like binary numbers are used in computers, and I’m proud that I can now understand and convert them. 
+            This subject made me realize that technology is not just tools, but something that depends on how people use it. 
+            Overall, it made me more aware and confident when using technology.
+            Creating this e-Portfolio website was both challenging and fulfilling for me. 
+            At first, I struggled with organizing my ideas and making everything look presentable, but I slowly learned how to design it in a clear and simple way. 
+            Through this experience, I became more creative and patient, especially when fixing mistakes. 
+            In the end, I felt proud because I was able to create something that shows my skills and effort.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
           <p>The Living in the IT Era course helped me understand technology in a way that actually makes sense in my
             daily life. Before, I only used gadgets without really knowing how they worked, but now I understand the
             difference between IT and ICT and how hardware, software, and people all work together. I also found it
@@ -1527,18 +1301,7 @@
           </div>
         </div>
         <div class="member-block">
-          <h4>My Hobbies and Talents</h4>
-          <p>Dancing is my passion and my way to fight loneliness while staying at home. Whenever I feel alone or sad,
-            it serves as my companion and helps me express my emotions through movement. It turns my quiet and empty
-            days into something happy and meaningful. Truly, dancing is my source of joy and strength that keeps me
-            company even when I am by myself.</p>
-          <div class="media-grid">
-            <div class="media-item"><video src="resources/brutas/hobby%20and%20talent.mp4" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Professional Development</h4>
+          <h4>Professional Development</h4>
           <p>I actively participated in professional development activities, including the 2nd and 3rd Regional Congress
             for Future Administrative Professionals (RCFAP) and the Corporate Fashion Show, all held at the CSPC Main
             Campus. These experiences allowed me to expand my knowledge, develop my skills, and gain confidence through
@@ -1556,19 +1319,6 @@
             <div class="media-item"><video src="resources/brutas/professional%20development%205.mp4" controls
                 preload="metadata"></video></div>
           </div>
-        </div>
-        <div class="member-block">
-          <h4>My Insights</h4>
-          <p>The Living in the IT Era course helped me understand technology in a way that actually makes sense in my daily life.
-            Before, I only used gadgets without really knowing how they worked,
-            but now I understand the difference between IT and ICT and how hardware, software, and people all work together.
-            I also found it interesting how simple things like binary numbers are used in computers, and I am proud that I can now understand and convert them.
-            This subject made me realize that technology is not just tools, but something that depends on how people use it.
-            Overall, it made me more aware and confident when using technology.
-            Creating this e-Portfolio website was both challenging and fulfilling for me.
-            At first, I struggled with organizing my ideas and making everything look presentable, but I slowly learned how to design it in a clear and simple way.
-            Through this experience, I became more creative and patient, especially when fixing mistakes.
-            In the end, I felt proud because I was able to create something that shows my skills and effort.</p>
         </div>
       </div>
     </div>
@@ -1593,26 +1343,14 @@
           </ul>
         </div>
         <div class="member-block">
-          <h4>My Goals</h4>
+          <h4>My Goal</h4>
           <p>As a student, my primary goal is to complete my studies, earn my diploma, and achieve strong academic
             performance to make my parents proud. I also aim to develop practical skills that I can apply in my future
             career. At present, I am focused on persevering through college, gaining valuable experiences, and
             eventually securing a stable job after graduation.</p>
         </div>
         <div class="member-block">
-          <h4>My Daily Communication</h4>
-          <p>I use my cellphone as my primary tool for communication and my laptop for completing academic tasks. I
-            usually start my day by checking my messages on Messenger and responding to my friends and family.
-            Throughout the day, I communicate with my classmates through group chats to discuss school activities and
-            assignments. Communication plays an important role in helping me stay connected, express my thoughts and
-            feelings, and feel less alone even when I am at home.</p>
-          <div class="media-grid">
-            <div class="media-item"><video src="resources/cuenca/daily%20communication.mp4" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Hobbies and Talents</h4>
+          <h4>Talents and Hobbies</h4>
           <p>My hobby is creating TikTok content, specifically dancing and lip sync videos. I enjoy learning trending
             dance challenges and lip syncing to my favorite songs because it helps me express myself and boost my
             confidence. Whenever I feel stressed or bored, I open TikTok and record videos using popular sounds and
@@ -1627,7 +1365,32 @@
           </div>
         </div>
         <div class="member-block">
-          <h4>My Professional Development</h4>
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course, I learned how important technology is in our daily lives, especially in
+            school and future work. Before, I did not really pay attention to how technology works, but now I understand
+            its importance and how it makes tasks easier and faster. I also learned about digital citizenship and how to
+            be responsible when using the internet and social media. This course made me realize that being computer
+            literate is a big advantage for an administrative professional like me. While creating this electronic
+            portfolio website, I learned how to organize my outputs and present them in a neat and professional way. I
+            also realized that patience is important because editing and arranging everything takes time and effort.
+            This activity helped me improve my tech skills and gave me confidence to use new software in the future. In
+            the end, I felt happy and proud because I was able to create something that reflects my effort and learning.
+          </p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>I use my cellphone as my primary tool for communication and my laptop for completing academic tasks. I
+            usually start my day by checking my messages on Messenger and responding to my friends and family.
+            Throughout the day, I communicate with my classmates through group chats to discuss school activities and
+            assignments. Communication plays an important role in helping me stay connected, express my thoughts and
+            feelings, and feel less alone even when I am at home.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/cuenca/daily%20communication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
           <p>For my professional development, I attended the 2nd and 3rd Regional Congress for Future Administrative
             Professionals (RCFAP), the Inter-Campus Symposium on Stenography 2025, and the Corporate Fashion Show, which
             all held at CSPC Main Campus. These events provided me with opportunities to learn and enhance my skills in
@@ -1643,19 +1406,6 @@
             <div class="media-item"><img src="resources/cuenca/professional%20development%204.jpg"
                 alt="Cuenca professional development 4"></div>
           </div>
-        </div>
-        <div class="member-block">
-          <h4>My Insights</h4>
-          <p>In the Living in the IT Era course, I learned how important technology is in our daily lives, especially in
-            school and future work. Before, I did not really pay attention to how technology works, but now I understand
-            its importance and how it makes tasks easier and faster. I also learned about digital citizenship and how to
-            be responsible when using the internet and social media. This course made me realize that being computer
-            literate is a big advantage for an administrative professional like me. While creating this electronic
-            portfolio website, I learned how to organize my outputs and present them in a neat and professional way. I
-            also realized that patience is important because editing and arranging everything takes time and effort.
-            This activity helped me improve my tech skills and gave me confidence to use new software in the future. In
-            the end, I felt happy and proud because I was able to create something that reflects my effort and learning.
-          </p>
         </div>
       </div>
     </div>
@@ -1680,7 +1430,7 @@
           </ul>
         </div>
         <div class="member-block">
-          <h4>My Goals</h4>
+          <h4>My Goal</h4>
           <p>"Ang pangarap ko ay hindi para sa isang tao lang." My goals in life are not just for my own success, but
             more importantly for my family - especially my single mom and my three siblings. I aspire to give back to my
             mother for all the sacrifices she has made that shaped me into who I am today. More than that, I want to
@@ -1690,19 +1440,7 @@
             continue moving forward despite life's challenges.</p>
         </div>
         <div class="member-block">
-          <h4>My Daily Communication</h4>
-          <p>In my daily life, I rely on digital technology such as my smartphone and laptop for communication and
-            academic tasks. I use Facebook and Messenger to connect with my classmates, friends, and loved ones. For my
-            school requirements, I utilize platforms like Canva, Microsoft Office, Google Classroom, and Gmail for
-            creating, submitting, and receiving academic outputs. These digital tools help me stay connected, informed,
-            and productive in my daily activities as a student.</p>
-          <div class="media-grid">
-            <div class="media-item"><video src="resources/esta/daily%20conmunication.mp4" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Hobbies and Talents</h4>
+          <h4>Talents and Hobbies</h4>
           <p>My main hobby is doing household chores, as I find it more meaningful to spend my time helping at home
             rather than using my cellphone. During my free time, I also enjoy playing with my three siblings because I
             know that in the future, I may be away from them once I start working. That is why I want to cherish and
@@ -1721,7 +1459,33 @@
           </div>
         </div>
         <div class="member-block">
-          <h4>My Professional Development</h4>
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course under Sir Andrian T. Hernandez, I learned that technology is more than
+            just gadgets - it plays a big role in how we think, communicate, and live daily. I became more aware of the
+            importance of using the internet responsibly, especially when it comes to privacy and online behavior. The
+            course also helped me understand how IT can improve productivity but can also be a distraction if not
+            managed well. Overall, it made me reflect on my own habits and encouraged me to be more disciplined and
+            mindful in using technology. In creating our electronic portfolio website, I learned how to balance
+            technical tasks with teamwork, which was not always easy. As the group leader, I had to manage our time,
+            assign responsibilities, and make sure everyone was doing their part. Through this experience, I truly
+            understood that leadership is not just about finishing the task, but also about supporting and guiding the
+            team. Despite the challenges, it helped me become more responsible, patient, and confident, and I realized
+            that being a leader is about leading the team forward, not being perfect.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>In my daily life, I rely on digital technology such as my smartphone and laptop for communication and
+            academic tasks. I use Facebook and Messenger to connect with my classmates, friends, and loved ones. For my
+            school requirements, I utilize platforms like Canva, Microsoft Office, Google Classroom, and Gmail for
+            creating, submitting, and receiving academic outputs. These digital tools help me stay connected, informed,
+            and productive in my daily activities as a student.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/esta/daily%20conmunication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
           <p>For my professional development, I participated in several seminars and activities including the 2nd and
             3rd Regional Congress for Future Administrative Professionals (RCFAP), Water Search and Rescue (WASAR) 2025,
             the Inter-Campus Symposium on Stenography 2025, and the Corporate Fashion Show, which all held at CSPC Main
@@ -1740,20 +1504,6 @@
             <div class="media-item"><video src="resources/esta/professional%20development%205.mp4" controls
                 preload="metadata"></video></div>
           </div>
-        </div>
-        <div class="member-block">
-          <h4>My Insights</h4>
-          <p>In the Living in the IT Era course under Sir Andrian T. Hernandez, I learned that technology is more than
-            just gadgets - it plays a big role in how we think, communicate, and live daily. I became more aware of the
-            importance of using the internet responsibly, especially when it comes to privacy and online behavior. The
-            course also helped me understand how IT can improve productivity but can also be a distraction if not
-            managed well. Overall, it made me reflect on my own habits and encouraged me to be more disciplined and
-            mindful in using technology. In creating our electronic portfolio website, I learned how to balance
-            technical tasks with teamwork, which was not always easy. As the group leader, I had to manage our time,
-            assign responsibilities, and make sure everyone was doing their part. Through this experience, I truly
-            understood that leadership is not just about finishing the task, but also about supporting and guiding the
-            team. Despite the challenges, it helped me become more responsible, patient, and confident, and I realized
-            that being a leader is about leading the team forward, not being perfect.</p>
         </div>
       </div>
     </div>
@@ -1778,24 +1528,14 @@
           </ul>
         </div>
         <div class="member-block">
-          <h4>My Goals</h4>
+          <h4>My Goal</h4>
           <p>My goal as a student is to finish my studies and earn my diploma, pass the Civil Service Exam (CSE), and
             get a good job. I also aim to become financially stable, have my own house and car, and reconcile with my
             parents. I want to experience things I have not yet experienced, not only for myself but also for my
             parents, so they can enjoy things they have never experienced even for a single day.</p>
         </div>
         <div class="member-block">
-          <h4>My Daily Communication</h4>
-          <p>My daily communication tool is my cellphone. Through it, I communicate with my relatives and family using
-            applications installed on my phone, such as Contacts, Messages, Facebook, and Messenger. I also use my
-            cellphone for studying, completing tasks, collecting documents, and obtaining educational information.</p>
-          <div class="media-grid">
-            <div class="media-item"><video src="resources/leria/daily%20communication.mp4" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Hobbies and Talents</h4>
+          <h4>Talents and Hobbies</h4>
           <p>My hobby is drawing using my imagination. I enjoy drawing on my sketchpad, especially anime characters and
             other designs, while listening to my favorite music. My talent is singing. Whenever I hear music, I like to
             sing along, and sometimes I record my voice on my phone when I have nothing to do or when I feel bored.</p>
@@ -1816,7 +1556,29 @@
           </div>
         </div>
         <div class="member-block">
-          <h4>My Professional Development</h4>
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course, I learned about how computers started and how they improved over time.
+            I also got to know the people behind these inventions, which made me appreciate technology more. Before, I
+            did not really think about how devices work, but now I understand the basics of hardware, software, and even
+            artificial intelligence. I see now how these technologies are part of my everyday life, like using my phone.
+            This subject helped me understand technology not just as a tool, but as something that keeps improving.
+            While creating this e-Portfolio website, I realized how important technology is in communication and
+            education. At first, I thought it was just a simple task, but it actually showed me how advanced technology
+            can be used creatively. I learned how to use my phone in a more productive way. Overall, this experience
+            helped me become more open to learning and adapting to modern technology.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>My daily communication tool is my cellphone. Through it, I communicate with my relatives and family using
+            applications installed on my phone, such as Contacts, Messages, Facebook, and Messenger. I also use my
+            cellphone for studying, completing tasks, collecting documents, and obtaining educational information.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/leria/daily%20communication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
           <p>I attended six seminars: the 2nd and 3rd Regional Congress for Future Administrative Professionals (RCFAP),
             Water Search and Rescue (WASAR) 2025, ASOG Technology Business Incubator, Awareness Campaign, Inter-Campus
             Symposium on Stenography 2025, and the Corporate Fashion Show. All of these were held at the CSPC Main
@@ -1834,18 +1596,6 @@
             <div class="media-item"><video src="resources/leria/professional%20development%205.mp4" controls
                 preload="metadata"></video></div>
           </div>
-        </div>
-        <div class="member-block">
-          <h4>My Insights</h4>
-          <p>In the Living in the IT Era course, I learned about how computers started and how they improved over time.
-            I also got to know the people behind these inventions, which made me appreciate technology more. Before, I
-            did not really think about how devices work, but now I understand the basics of hardware, software, and even
-            artificial intelligence. I see now how these technologies are part of my everyday life, like using my phone.
-            This subject helped me understand technology not just as a tool, but as something that keeps improving.
-            While creating this e-Portfolio website, I realized how important technology is in communication and
-            education. At first, I thought it was just a simple task, but it actually showed me how advanced technology
-            can be used creatively. I learned how to use my phone in a more productive way. Overall, this experience
-            helped me become more open to learning and adapting to modern technology.</p>
         </div>
       </div>
     </div>
@@ -1870,46 +1620,19 @@
           </ul>
         </div>
         <div class="member-block">
-          <h4>My Goals</h4>
+          <h4>My Goal</h4>
           <p>My goal as a student is to study well and improve my skills. I want to become more focused and responsible
             in my schoolwork. I also aim to learn new things every day. I will do my best in every activity and
             requirement. In the future, I hope to finish my studies and achieve my goals.</p>
         </div>
         <div class="member-block">
-          <h4>My Daily Communication</h4>
-          <p>For my daily communication, I use my cellphone as my main technology. I stay connected through Messenger
-            and Facebook to chat with family and friends and check updates. I also use my cellphone to edit and complete
-            school projects and activities using Canva. These tools help me communicate easily and finish my tasks on
-            time. Overall, they make my daily life more convenient and organized.</p>
-          <div class="media-grid">
-            <div class="media-item"><video src="resources/ludovice/daily%20communication.mp4" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Hobbies and Talents</h4>
+          <h4>Talents and Hobbies</h4>
           <p>One of my hobbies and talents is dancing. I enjoy expressing myself through different dance styles and
             movements. I practice in my free time to improve my skills. Sometimes, I dance even when I feel bored
             because it helps me feel more energetic and entertained. Dancing also helps me stay active and boosts my
             confidence.</p>
           <div class="media-grid">
             <div class="media-item"><video src="resources/ludovice/hobbies%20and%20talent.mp4" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Professional Development</h4>
-          <p>I attended two seminars. These were the 2nd and 3rd Regional Congress for Future Administrative
-            Professionals (RCFAP). I also participated in the Corporate Fashion Show. All of these events were held at
-            the CSPC Main Campus. I enjoyed these experiences while also gaining new knowledge.</p>
-          <div class="media-grid">
-            <div class="media-item"><img src="resources/ludovice/professional%20development%201.jpg"
-                alt="Ludovice professional development 1"></div>
-            <div class="media-item"><img src="resources/ludovice/professional%20development%202.jpg"
-                alt="Ludovice professional development 2"></div>
-            <div class="media-item"><img src="resources/ludovice/professional%20development%203.jpg"
-                alt="Ludovice professional development 3"></div>
-            <div class="media-item"><video src="resources/ludovice/professional%20development%204.mp4" controls
                 preload="metadata"></video></div>
           </div>
         </div>
@@ -1923,6 +1646,33 @@
             my work. I also realized that small details really matter when presenting something. This experience helped
             me become more creative and patient. It also made me understand how important it is to keep things simple,
             clear, and neat.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>For my daily communication, I use my cellphone as my main technology. I stay connected through Messenger
+            and Facebook to chat with family and friends and check updates. I also use my cellphone to edit and complete
+            school projects and activities using Canva. These tools help me communicate easily and finish my tasks on
+            time. Overall, they make my daily life more convenient and organized.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/ludovice/daily%20communication.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
+          <p>I attended two seminars. These were the 2nd and 3rd Regional Congress for Future Administrative
+            Professionals (RCFAP). I also participated in the Corporate Fashion Show. All of these events were held at
+            the CSPC Main Campus. I enjoyed these experiences while also gaining new knowledge.</p>
+          <div class="media-grid">
+            <div class="media-item"><img src="resources/ludovice/professional%20development%201.jpg"
+                alt="Ludovice professional development 1"></div>
+            <div class="media-item"><img src="resources/ludovice/professional%20development%202.jpg"
+                alt="Ludovice professional development 2"></div>
+            <div class="media-item"><img src="resources/ludovice/professional%20development%203.jpg"
+                alt="Ludovice professional development 3"></div>
+            <div class="media-item"><video src="resources/ludovice/professional%20development%204.mp4" controls
+                preload="metadata"></video></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1947,28 +1697,14 @@
           </ul>
         </div>
         <div class="member-block">
-          <h4>My Goals</h4>
+          <h4>My Goal</h4>
           <p>As a student, my goal is to finish my studies and achieve my dreams in life. I want to improve my skills,
             especially in communication and using technology. I also want to be more responsible and focused on my
             studies. In the future, I hope to have a stable job and support my family. I will continue to do my best to
             reach my goals.</p>
         </div>
         <div class="member-block">
-          <h4>My Daily Communication</h4>
-          <p>In my daily life, I use my smartphone and laptop to communicate and complete my school tasks. I usually use
-            Facebook and Messenger to chat with my classmates and stay updated on announcements. For schoolwork, I use
-            Google Classroom and Gmail to submit activities and receive instructions from my teachers. I also use TikTok
-            during my free time, and sometimes I learn things from it. These apps help me stay connected, informed, and
-            productive every day.</p>
-          <div class="media-grid">
-            <div class="media-item"><video src="resources/monte/daily%20communication1.MOV" controls
-                preload="metadata"></video></div>
-            <div class="media-item"><video src="resources/monte/daily%20communication%202.MOV" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Hobbies and Talents</h4>
+          <h4>Talents and Hobbies</h4>
           <p>My hobby is drawing because it helps me express my ideas and creativity. I enjoy sketching whenever I have
             free time since it makes me feel relaxed and less stressed. Drawing also helps me improve my focus and
             attention to detail. I feel happy and proud whenever I finish an artwork. For me, drawing is not just a
@@ -1982,7 +1718,33 @@
           </div>
         </div>
         <div class="member-block">
-          <h4>My Professional Development</h4>
+          <h4>My Insights</h4>
+          <p>The Living in the IT Era course made me realize how much technology affects my daily life. From
+            communication to decision-making, I noticed that I rely on it more than I thought. It also taught me the
+            importance of being responsible, especially when it comes to privacy and security. I learned that IT is not
+            just about using computers, but also about solving real-life problems. This subject helped me see how these
+            skills can be useful for my future. While creating this e-Portfolio website, I learned how to present myself
+            and my work in a more organized way. It was difficult at first, especially when I encountered errors, but I
+            did not give up. As I continued, I became more confident in fixing problems on my own. I also learned that
+            patience and attention to detail are very important. In the end, I felt proud because I saw my improvement
+            and hard work.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>In my daily life, I use my smartphone and laptop to communicate and complete my school tasks. I usually use
+            Facebook and Messenger to chat with my classmates and stay updated on announcements. For schoolwork, I use
+            Google Classroom and Gmail to submit activities and receive instructions from my teachers. I also use TikTok
+            during my free time, and sometimes I learn things from it. These apps help me stay connected, informed, and
+            productive every day.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/monte/daily%20communication1.MOV" controls
+                preload="metadata"></video></div>
+            <div class="media-item"><video src="resources/monte/daily%20communication%202.MOV" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
           <p>For my professional development, I attended the 2nd and 3rd Regional Congress for Future Administrative
             Professional (RCFAP), the Inter-Campus Symposium on Stenography 2025, and the Corporate Fashion Show. All of
             these were held at the CSPC Main Campus. These events helped me learn new things and gain more confidence. I
@@ -2002,18 +1764,6 @@
             <div class="media-item"><video src="resources/monte/professional%20development%206.mp4" controls
                 preload="metadata"></video></div>
           </div>
-        </div>
-        <div class="member-block">
-          <h4>My Insights</h4>
-          <p>The Living in the IT Era course made me realize how much technology affects my daily life. From
-            communication to decision-making, I noticed that I rely on it more than I thought. It also taught me the
-            importance of being responsible, especially when it comes to privacy and security. I learned that IT is not
-            just about using computers, but also about solving real-life problems. This subject helped me see how these
-            skills can be useful for my future. While creating this e-Portfolio website, I learned how to present myself
-            and my work in a more organized way. It was difficult at first, especially when I encountered errors, but I
-            did not give up. As I continued, I became more confident in fixing problems on my own. I also learned that
-            patience and attention to detail are very important. In the end, I felt proud because I saw my improvement
-            and hard work.</p>
         </div>
       </div>
     </div>
@@ -2039,14 +1789,35 @@
           </ul>
         </div>
         <div class="member-block">
-          <h4>My Goals</h4>
+          <h4>My Goal</h4>
           <p>My goal is to graduate as a Bachelor of Science in Office Administration student with good academic
             performance and achieve my dreams in life. I want to work hard and stay focused so I can build a successful
             future, build a big house and support my family financially. Everything I do as a student is for my future
             and for the people I love.</p>
         </div>
         <div class="member-block">
-          <h4>My Daily Communication</h4>
+          <h4>Talents and Hobbies</h4>
+          <p>One of my talents is singing because singing helps me build confidence and express myself better. I enjoy
+            practicing different songs to improve my voice and build my confidence when sometimes bored. Singing is not
+            just a hobby for me, but also a talent that I am proud of.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/quemado/hobbies%20and%20talent.mp4" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course, I realized how important technology is in everyday life, especially in
+            communication and education. I learned that using the internet comes with responsibility, such as protecting
+            privacy and being careful with what I share online. This course also helped me understand how to use digital
+            platforms more effectively. I became more aware of my digital footprint and how it can affect me. Overall,
+            it helped me think more critically when using technology. While creating this electronic portfolio website,
+            I learned how to present my work in a more organized and creative way. At first, it was a bit confusing, but
+            I slowly learned how to arrange everything properly. I also realized the importance of clear communication
+            when sharing information. This experience improved both my technical and organizational skills.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
           <p>My laptop is my daily communication tool, especially for school tasks and coordination. I use it to send
             emails, join online classes, and communicate with classmates through messaging platforms. It helps me stay
             organized by managing documents and important files. I also use it for researching information, creating
@@ -2058,17 +1829,7 @@
           </div>
         </div>
         <div class="member-block">
-          <h4>My Hobbies and Talents</h4>
-          <p>One of my talents is singing because singing helps me build confidence and express myself better. I enjoy
-            practicing different songs to improve my voice and build my confidence when sometimes bored. Singing is not
-            just a hobby for me, but also a talent that I am proud of.</p>
-          <div class="media-grid">
-            <div class="media-item"><video src="resources/quemado/hobbies%20and%20talent.mp4" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Professional Development</h4>
+          <h4>Professional Development</h4>
           <p>My professional development is strengthened through my active participation in the Inter-Campus Symposium
             on Stenography, the Corporate Fashion Show, and the 2nd and 3rd Regional Congress for Future Administrative
             Professionals (RCFAP), which all held at CSPC Main Campus. These experiences enhance my technical skills,
@@ -2086,17 +1847,6 @@
             <div class="media-item"><video src="resources/quemado/professional%20development%205.mp4" controls
                 preload="metadata"></video></div>
           </div>
-        </div>
-        <div class="member-block">
-          <h4>My Insights</h4>
-          <p>In the Living in the IT Era course, I realized how important technology is in everyday life, especially in
-            communication and education. I learned that using the internet comes with responsibility, such as protecting
-            privacy and being careful with what I share online. This course also helped me understand how to use digital
-            platforms more effectively. I became more aware of my digital footprint and how it can affect me. Overall,
-            it helped me think more critically when using technology. While creating this electronic portfolio website,
-            I learned how to present my work in a more organized and creative way. At first, it was a bit confusing, but
-            I slowly learned how to arrange everything properly. I also realized the importance of clear communication
-            when sharing information. This experience improved both my technical and organizational skills.</p>
         </div>
       </div>
     </div>
@@ -2121,7 +1871,7 @@
           </ul>
         </div>
         <div class="member-block">
-          <h4>My Goals</h4>
+          <h4>My Goal</h4>
           <p>As a student, my primary goal is to successfully complete my education and earn a degree that will help me
             build a stable future. I aim to develop my skills, expand my knowledge, and become more responsible and
             disciplined in my studies. I believe that through education, I will be able to achieve financial stability,
@@ -2130,19 +1880,7 @@
             continue engaging in activities that bring me fulfillment and happiness.</p>
         </div>
         <div class="member-block">
-          <h4>My Daily Communication</h4>
-          <p>I primarily used my cellphone for my daily activities; however, since it is currently not functioning, I
-            now rely on my laptop to access the internet and stay updated through TikTok, Messenger, and Gmail. Although
-            a laptop is less portable and not as convenient to use in all situations, it remains a highly functional
-            tool. Most importantly, it allows me to accomplish my tasks efficiently, especially those related to my
-            academic responsibilities.</p>
-          <div class="media-grid">
-            <div class="media-item"><video src="resources/talagtag/daily%20communication.MOV" controls
-                preload="metadata"></video></div>
-          </div>
-        </div>
-        <div class="member-block">
-          <h4>My Hobbies and Talents</h4>
+          <h4>Talents and Hobbies</h4>
           <p>I developed an interest in dancing at a young age; however, due to limited practice and a lack of
             confidence in my abilities, I gradually shifted my focus to drawing and sketching as a means of
             self-expression. Nevertheless, I am grateful to have developed skills in both dancing and drawing, which I
@@ -2155,7 +1893,32 @@
           </div>
         </div>
         <div class="member-block">
-          <h4>My Professional Development</h4>
+          <h4>My Insights</h4>
+          <p>In the Living in the IT Era course, I gained a better understanding of how technology affects my daily
+            life. I noticed how it helps make tasks easier, especially in communication and schoolwork. I also learned
+            the importance of being responsible, such as protecting personal data and using information properly. This
+            course made me realize that technology keeps changing, so I need to keep learning as well. Moreover, the
+            course helped me become more aware and responsible as a user. While creating this electronic portfolio
+            website, I learned that teamwork really matters because we had to rely on each other to finish our tasks on
+            time. I also realized that communication is important since small misunderstandings can affect our progress.
+            At first, I struggled with organizing my part, but I slowly learned how to improve it through practice and
+            feedback. In the end, I felt proud because I saw how our cooperation turned our work into a complete and
+            meaningful output.</p>
+        </div>
+        <div class="member-block">
+          <h4>Daily Communication</h4>
+          <p>I primarily used my cellphone for my daily activities; however, since it is currently not functioning, I
+            now rely on my laptop to access the internet and stay updated through TikTok, Messenger, and Gmail. Although
+            a laptop is less portable and not as convenient to use in all situations, it remains a highly functional
+            tool. Most importantly, it allows me to accomplish my tasks efficiently, especially those related to my
+            academic responsibilities.</p>
+          <div class="media-grid">
+            <div class="media-item"><video src="resources/talagtag/daily%20communication.MOV" controls
+                preload="metadata"></video></div>
+          </div>
+        </div>
+        <div class="member-block">
+          <h4>Professional Development</h4>
           <p>For my professional development, I participated in several seminars and activities, including the 3rd
             Regional Congress for Future Administrative Professionals, Water Search and Rescue 2025, and the Corporate
             Fashion Show, which all held at CSPC Main Campus. These activities helped me sharpen my technical skills,
@@ -2173,19 +1936,6 @@
                 preload="metadata"></video></div>
           </div>
         </div>
-        <div class="member-block">
-          <h4>My Insights</h4>
-          <p>In the Living in the IT Era course, I gained a better understanding of how technology affects my daily
-            life. I noticed how it helps make tasks easier, especially in communication and schoolwork. I also learned
-            the importance of being responsible, such as protecting personal data and using information properly. This
-            course made me realize that technology keeps changing, so I need to keep learning as well. Moreover, the
-            course helped me become more aware and responsible as a user. While creating this electronic portfolio
-            website, I learned that teamwork really matters because we had to rely on each other to finish our tasks on
-            time. I also realized that communication is important since small misunderstandings can affect our progress.
-            At first, I struggled with organizing my part, but I slowly learned how to improve it through practice and
-            feedback. In the end, I felt proud because I saw how our cooperation turned our work into a complete and
-            meaningful output.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -2202,38 +1952,15 @@
       <div class="contact-card reveal reveal-delay-1">
         <p><strong>Camarines Sur Polytechnic Colleges</strong></p>
         <p>San Miguel, Nabua, Camarines Sur 4434 Philippines</p>
-        <p><strong>BSOA 3F</strong></p>
-        <p><a href="https://www.facebook.com/profile.php?id=61563661178344" target="_blank" rel="noopener">Facebook Page</a></p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <img class="footer-banner" src="resources/gp_no_bg.png" alt="Group portrait banner">
     <div class="footer-logo">Enchanted<span>Portfolio</span></div>
-    <div class="footer-copy">
-      <span>2026 - BSOA 3F - Living in the IT Era</span>
-      <span class="footer-copyright">Copyright (c) 2026 BSOA 3F. All rights reserved.</span>
-    </div>
+    <div class="footer-copy">2026 - BSOA 3F - Living in the IT Era</div>
   </footer>
-
-  <div class="profile-nav hidden" id="profileNav" aria-label="Profile navigation">
-    <button class="profile-nav-btn" id="profilePrev" type="button" aria-label="Previous profile">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <polygon points="12,3 14,5 12,7 10,5" />
-        <path d="M12 7v12" />
-        <path d="M6 11l6-6 6 6" />
-      </svg>
-    </button>
-    <button class="profile-nav-btn" id="profileNext" type="button" aria-label="Next profile">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <polygon points="12,21 14,19 12,17 10,19" />
-        <path d="M12 5v12" />
-        <path d="M6 13l6 6 6-6" />
-      </svg>
-    </button>
-  </div>
 
   <script>
     // Custom cursor
@@ -2304,54 +2031,6 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Floating profile navigation
-    const memberIds = ['brutas', 'cuenca', 'esta', 'leria', 'ludovice', 'monte', 'quemado', 'talagtag'];
-    const memberSections = memberIds
-      .map(id => document.getElementById(id))
-      .filter(Boolean);
-    const profileNav = document.getElementById('profileNav');
-    const profilePrev = document.getElementById('profilePrev');
-    const profileNext = document.getElementById('profileNext');
-    let currentMemberIndex = 0;
-
-    function getActiveMemberIndex() {
-      const scrollPos = window.scrollY + window.innerHeight * 0.35;
-      let index = 0;
-      memberSections.forEach((section, i) => {
-        if (section.offsetTop <= scrollPos) {
-          index = i;
-        }
-      });
-      return index;
-    }
-
-    function updateProfileNav() {
-      if (!profileNav || memberSections.length === 0) return;
-      const firstTop = memberSections[0].offsetTop;
-      const shouldShow = window.scrollY + 10 >= firstTop;
-      profileNav.classList.toggle('hidden', !shouldShow);
-      if (!shouldShow) return;
-      currentMemberIndex = getActiveMemberIndex();
-      profilePrev.disabled = currentMemberIndex === 0;
-      profileNext.disabled = currentMemberIndex === memberSections.length - 1;
-    }
-
-    if (profilePrev && profileNext) {
-      profilePrev.addEventListener('click', () => {
-        const targetIndex = Math.max(0, currentMemberIndex - 1);
-        memberSections[targetIndex].scrollIntoView({ behavior: 'smooth' });
-      });
-
-      profileNext.addEventListener('click', () => {
-        const targetIndex = Math.min(memberSections.length - 1, currentMemberIndex + 1);
-        memberSections[targetIndex].scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-
-    window.addEventListener('scroll', updateProfileNav);
-    window.addEventListener('resize', updateProfileNav);
-    updateProfileNav();
 
     // Loader
     const siteLoader = document.getElementById('site-loader');
