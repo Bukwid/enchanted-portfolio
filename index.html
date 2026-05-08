@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Enchanted Portfolio</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;700&family=Nunito:wght@300;400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Open+Sans:wght@300;400;600;700&display=swap"
     rel="stylesheet">
   <style>
     *,
@@ -33,6 +33,10 @@
       --petal: #F2C4CE;
       --sky: #A8D4E8;
       --enchanted: #E8D5F5;
+      --royal-purple: #2B1348;
+      --royal-blue: #1F3C88;
+      --royal-gold: #D7B35A;
+      --royal-gold-soft: #F1E0B4;
     }
 
     html {
@@ -66,7 +70,7 @@
     }
 
     body {
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Open Sans', sans-serif;
       background: var(--cream);
       color: var(--midnight);
       overflow-x: hidden;
@@ -92,20 +96,20 @@
     }
 
     #site-loader .loader-logo {
-      font-family: 'Cinzel', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
       letter-spacing: 0.18em;
-      color: var(--midnight);
+      color: var(--royal-purple);
     }
 
     #site-loader .loader-logo span {
-      color: var(--rose);
+      color: var(--royal-gold);
     }
 
     #site-loader .loader-word {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
-      color: var(--rose);
+      color: var(--royal-purple);
       margin-top: 0.35rem;
       margin-bottom: 0.9rem;
     }
@@ -124,26 +128,25 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      border: 6px solid rgba(201, 99, 122, 0.12);
+      border: 2px solid rgba(215, 179, 90, 0.25);
+      border-top-color: rgba(215, 179, 90, 0.85);
     }
 
-    .loader-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--gold);
-      position: relative;
-      transform-origin: -120% 50%;
-      animation: loader-orbit 1.6s linear infinite;
+    .loader-crown {
+      font-size: 1.8rem;
+      color: var(--royal-gold);
+      display: inline-block;
+      text-shadow: 0 0 12px rgba(215, 179, 90, 0.35);
+      animation: crownSpin 1.6s linear infinite;
     }
 
-    @keyframes loader-orbit {
+    @keyframes crownSpin {
       from {
-        transform: rotate(0deg) translateX(36px) rotate(0deg);
+        transform: rotate(0deg);
       }
 
       to {
-        transform: rotate(360deg) translateX(36px) rotate(-360deg);
+        transform: rotate(360deg);
       }
     }
 
@@ -203,15 +206,19 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.1rem 4rem;
-      background: rgba(251, 247, 240, 0.85);
+      background: linear-gradient(135deg, rgba(43, 19, 72, 0.96), rgba(31, 60, 136, 0.96));
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--rose-light);
+      border-bottom: 1px solid rgba(215, 179, 90, 0.35);
+      color: var(--royal-gold);
     }
 
     .nav-logo {
-      font-family: 'Cinzel', serif;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Playfair Display', serif;
       font-size: 1rem;
-      color: var(--midnight);
+      color: var(--royal-gold);
       letter-spacing: 0.15em;
       text-decoration: none;
     }
@@ -220,10 +227,15 @@
       display: block;
       height: 42px;
       width: auto;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
     }
 
     .nav-logo span {
-      color: var(--rose);
+      color: var(--royal-gold-soft);
+    }
+
+    .nav-menu {
+      position: relative;
     }
 
     .nav-links {
@@ -233,12 +245,15 @@
     }
 
     .nav-links a {
-      font-family: 'Nunito', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Open Sans', sans-serif;
       font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--midnight-mid);
+      color: var(--royal-gold);
       text-decoration: none;
       position: relative;
       transition: color 0.3s;
@@ -251,16 +266,69 @@
       left: 0;
       width: 0;
       height: 1.5px;
-      background: var(--rose);
+      background: var(--royal-gold);
       transition: width 0.3s;
     }
 
     .nav-links a:hover {
-      color: var(--rose);
+      color: var(--royal-gold-soft);
     }
 
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    .nav-icon {
+      font-size: 0.9rem;
+      line-height: 1;
+      color: var(--royal-gold-soft);
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(215, 179, 90, 0.45);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--royal-gold);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+    }
+
+    .nav-toggle svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+    }
+
+    .nav-close {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(215, 179, 90, 0.45);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--royal-gold);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-close:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
     }
 
     /* HERO */
@@ -397,6 +465,13 @@
       animation: fadeIn 1.2s 0.3s ease both;
     }
 
+    .hero-illustration img {
+      width: min(520px, 100%);
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 18px 40px rgba(26, 16, 48, 0.18));
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -509,6 +584,16 @@
 
     .section-tag::after {
       content: ' —';
+    }
+
+    .section-tag2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.8rem;
     }
 
     .section-title {
@@ -1176,13 +1261,98 @@
     }
 
     @media (max-width: 680px) {
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-menu {
+        position: absolute;
+        left: 1.5rem;
+        right: 1.5rem;
+        top: calc(100% + 0.4rem);
+        background: rgba(43, 19, 72, 0.98);
+        background-image: radial-gradient(circle at top, rgba(215, 179, 90, 0.2), transparent 60%);
+        border: 1px solid rgba(215, 179, 90, 0.4);
+        border-radius: 1rem;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+      }
+
+      .nav-menu.open {
+        max-height: 360px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
       .nav-links {
+        flex-direction: column;
+        gap: 0;
+        padding: 2.6rem 0 0.6rem;
+      }
+
+      .nav-links li {
+        border-top: 1px solid rgba(215, 179, 90, 0.2);
+      }
+
+      .nav-links li:first-child {
+        border-top: none;
+      }
+
+      .nav-links a {
+        width: 100%;
+        padding: 0.95rem 1.1rem;
+        min-height: 48px;
+        justify-content: flex-start;
+      }
+
+      .nav-links a::after {
         display: none;
+      }
+
+      .nav-close {
+        display: inline-flex;
+        position: absolute;
+        top: 0.4rem;
+        right: 0.4rem;
       }
 
       .portraits-grid {
         grid-template-columns: 1fr;
       }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .nav-logo,
+    .hero-eyebrow,
+    .hero-title,
+    .hero-subtitle,
+    .btn-primary,
+    .btn-outline,
+    .section-tag,
+    .section-tag2,
+    .about-note,
+    .about-text h3,
+    .portrait-info h3,
+    .member-name,
+    .member-role,
+    .member-backlink,
+    .member-block h4,
+    .footer-logo,
+    .profile-nav-btn,
+    #site-loader .loader-logo,
+    #site-loader .loader-word {
+      font-family: 'Playfair Display', serif;
     }
   </style>
   <!-- <script src="https://pl29341395.profitablecpmratenetwork.com/63/b1/9e/63b19e2d3a37c7025e833ebbc8b43586.js"></script> -->
@@ -1198,9 +1368,9 @@
   <div id="site-loader" aria-hidden="true">
     <div class="loader-inner" role="status" aria-label="Loading">
       <div class="loader-logo">Enchanted<span>Portfolio</span></div>
-      <div class="loader-word">Preparing the royal halls...</div>
+      <div class="loader-word">Summoning the royal court...</div>
       <div class="loader-spinner" aria-hidden="true">
-        <div class="loader-dot"></div>
+        <div class="loader-crown">👑</div>
       </div>
     </div>
   </div>
@@ -1209,16 +1379,28 @@
   <div class="sparkle-container" id="sparkles"></div>
 
   <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <img src="resources/logo.png" alt="Enchanted Portfolio logo">
+  <nav aria-label="Primary">
+    <a href="#top" class="nav-logo">
+      <img src="resources/logo.png" alt="Enchanted Portfolio logo"> <p class="nav-logo">Royal <span>Administrators</span></p>
     </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#ethics">Ethics</a></li>
-      <li><a href="#portraits">Royal Portraits</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu"
+      aria-label="Open navigation">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 7h16" />
+        <path d="M4 12h16" />
+        <path d="M4 17h16" />
+      </svg>
+    </button>
+    <div class="nav-menu" id="navMenu" aria-hidden="true">
+      <button class="nav-close" id="navClose" type="button" aria-label="Close navigation">✕</button>
+      <ul class="nav-links">
+        <li><a href="#top"><span class="nav-icon" role="img" aria-label="Home icon">🏰</span><span class="nav-text">Home</span></a></li>
+        <li><a href="#about"><span class="nav-icon" role="img" aria-label="About icon">📜</span><span class="nav-text">About</span></a></li>
+        <li><a href="#ethics"><span class="nav-icon" role="img" aria-label="Commitment icon">⚖</span><span class="nav-text">Commitment</span></a></li>
+        <li><a href="#portraits"><span class="nav-icon" role="img" aria-label="Meet the Team icon">👑</span><span class="nav-text">Meet the Team</span></a></li>
+        <li><a href="#contact"><span class="nav-icon" role="img" aria-label="Get in Touch icon">✉</span><span class="nav-text">Get in Touch</span></a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -1238,59 +1420,7 @@
       </div>
     </div>
     <div class="hero-illustration" aria-hidden="true">
-      <!-- Decorative SVG Portrait Area -->
-      <div class="portrait-frame">
-        <div class="portrait-bg"></div>
-        <div class="portrait-inner">
-          <svg class="portrait-svg" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
-            <!-- Crown -->
-            <g opacity="0.85">
-              <polygon points="150,40 130,65 140,60 150,75 160,60 170,65" fill="#C8A951" opacity="0.9" />
-              <circle cx="130" cy="68" r="5" fill="#C9637A" opacity="0.8" />
-              <circle cx="150" cy="77" r="5" fill="#7B5EA7" opacity="0.8" />
-              <circle cx="170" cy="68" r="5" fill="#C8A951" opacity="0.9" />
-            </g>
-            <!-- Head -->
-            <ellipse cx="150" cy="110" rx="40" ry="45" fill="#F5D0DA" opacity="0.9" />
-            <!-- Hair -->
-            <ellipse cx="150" cy="95" rx="45" ry="38" fill="#C8A951" opacity="0.7" />
-            <path d="M108 110 Q90 160 100 200" stroke="#C8A951" stroke-width="12" fill="none" stroke-linecap="round"
-              opacity="0.6" />
-            <path d="M192 110 Q210 160 200 200" stroke="#C8A951" stroke-width="12" fill="none" stroke-linecap="round"
-              opacity="0.6" />
-            <!-- Dress body -->
-            <path d="M120 170 Q80 220 60 310 L240 310 Q220 220 180 170 Z" fill="#C9637A" opacity="0.7" />
-            <path d="M115 175 Q100 200 90 250 L210 250 Q200 200 185 175 Z" fill="#E8A0B0" opacity="0.6" />
-            <!-- Bodice -->
-            <path d="M120 155 L130 180 L170 180 L180 155 Q165 148 150 148 Q135 148 120 155Z" fill="#7B5EA7"
-              opacity="0.8" />
-            <!-- Neck -->
-            <rect x="142" y="148" width="16" height="18" rx="4" fill="#F5D0DA" opacity="0.9" />
-            <!-- Dress details / stars -->
-            <circle cx="120" cy="230" r="3" fill="#C8A951" opacity="0.8" />
-            <circle cx="150" cy="260" r="4" fill="#C8A951" opacity="0.8" />
-            <circle cx="180" cy="235" r="3" fill="#C8A951" opacity="0.8" />
-            <circle cx="135" cy="290" r="3" fill="white" opacity="0.7" />
-            <circle cx="165" cy="280" r="2.5" fill="white" opacity="0.7" />
-            <!-- Magic wand -->
-            <line x1="195" y1="165" x2="240" y2="120" stroke="#C8A951" stroke-width="2.5" stroke-linecap="round" />
-            <polygon points="240,110 233,122 247,122" fill="#C8A951" opacity="0.9" />
-            <circle cx="240" cy="117" r="6" fill="#FFE066" opacity="0.8" />
-            <!-- Sparkles around wand -->
-            <text x="252" y="108" font-size="10" fill="#C8A951" opacity="0.8">✦</text>
-            <text x="245" y="95" font-size="7" fill="#C9637A" opacity="0.7">✦</text>
-            <text x="260" y="120" font-size="6" fill="#7B5EA7" opacity="0.7">✦</text>
-          </svg>
-        </div>
-        <!-- Orbit rings -->
-        <div class="orbit-ring" style="width:480px;height:480px;animation-duration:20s;">
-          <div class="orbit-gem">🌸</div>
-        </div>
-        <div class="orbit-ring"
-          style="width:380px;height:380px;animation-duration:15s;animation-direction:reverse;border-style:solid;border-color:rgba(200,169,81,0.15);">
-          <div class="orbit-gem">⭐</div>
-        </div>
-      </div>
+      <img src="resources/ra_gp.png" alt="Royal Administrators group portrait">
     </div>
   </section>
 
@@ -1324,8 +1454,8 @@
             contribute to a harmonious, productive, and modern workplace.</p>
           <div
             style="margin-top:2rem; padding:1.5rem; background:var(--enchanted); border-radius:1rem; text-align:center;">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--midnight);">
-              Royal Court of BSOA 3F</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--midnight);">
+              Royal Administrators</div>
             <div style="font-size:0.8rem;color:var(--lavender);margin-top:0.3rem;font-weight:600;">CSPC - Camarines Sur
               Polytechnic Colleges</div>
           </div>
@@ -1352,6 +1482,7 @@
     <div class="section-header reveal">
       <span class="section-tag">Royal Portraits</span>
       <h2 class="section-title">Meet the <em>Princesses</em> and Their Prince</h2>
+      <span class="section-tag2">Royal Administrators</span>
     </div>
     <div class="portraits-emblem reveal reveal-delay-1">
       <img src="resources/gp_no_bg.png" alt="Group portrait emblem">
@@ -1539,14 +1670,10 @@
         <a class="member-backlink" href="#portrait-brutas" aria-label="Back to Ivy O. Brutas portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
-          <ul>
-            <li>Name: Ivy Ongog Brutas</li>
-            <li>Age: 21 years old</li>
-            <li>Birthday: October 14, 2004</li>
-            <li>Address: Salvacion, Bato, Camarines Sur</li>
-            <li>Father's Name: Flaviano B. Brutas</li>
-            <li>Mother's Name: Melinda R. Brutas</li>
-          </ul>
+          <p>I am Ivy O. Brutas, currently a third-year Bachelor of Science in Office Administration (BSOA) student at Camarines Sur Polytechnic Colleges.
+            My zodiac sign is Libra, and I value balance in my family, friendships, and life. 
+            I prefer to keep things simple, honest, and clear in the way I interact with others. 
+            I also enjoy learning new things that help me grow personally and academically.</p>
         </div>
         <div class="member-block">
           <h4>My Goals</h4>
@@ -1647,14 +1774,7 @@
         <a class="member-backlink" href="#portrait-cuenca" aria-label="Back to Grace B. Cuenca portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
-          <ul>
-            <li>Name: Grace Bagacina Cuenca</li>
-            <li>Age: 22 years old</li>
-            <li>Birthday: March 3, 2004</li>
-            <li>Address: San Juan, Iriga City, Camarines Sur</li>
-            <li>Father's Name: Mario O. Cuenca</li>
-            <li>Mother's Name: Judith B. Cuenca</li>
-          </ul>
+          <p>My name is Grace B. Cuenca, and I am currently a third-year Bachelor of Science in Office Administration (BSOA) student at Camarines Sur Polytechnic Colleges. Most people know me as Danday. I consider myself approachable and easy to be with. I do not easily feel shy around new people, as I can still joke around and smile even if we are not that close yet. However, I become more outgoing once I start to trust someone. At present, I am still exploring the career path I want to pursue in the future, and I believe that taking things one step at a time helps me grow and learn more about myself. On a personal note, I am NBSB (No Boyfriend Since Birth). I would rather focus on finishing my studies and improving myself first before anything else.</p>
         </div>
         <div class="member-block">
           <h4>My Goals</h4>
@@ -1749,14 +1869,7 @@
         <a class="member-backlink" href="#portrait-esta" aria-label="Back to Ryza Joy B. Esta portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
-          <ul>
-            <li>Name: Ryza Joy Bobis Esta</li>
-            <li>Age: 20 years old</li>
-            <li>Birthday: August 17, 2005</li>
-            <li>Address: San Juan, Iriga City</li>
-            <li>Father's Name: Rodney D. Esta</li>
-            <li>Mother's Name: Judilyn B. Cepriano</li>
-          </ul>
+          <p>I am Ryza Joy B. Esta, currently a third-year Bachelor of Science in Office Administration (BSOA) student at Camarines Sur Polytechnic Colleges. My nicknames are Nene and Ajoy. Although I do not really like my second name, “Joy,” I truly enjoy giving joy to other people because of my funny and energetic personality. The languages I can speak are Tagalog, English, and Rinconada, but I would say I am an expert in the five love languages. I also have an androgynous fashion style, which sometimes makes it difficult for me to choose whether to wear masculine or feminine outfits. I have been a student leader since elementary, junior high school, and senior high school, but now that I am in college, I focus more on my personal growth and academics. I am also a consistent academic achiever. My life verse is Isaiah 60:22: “When the time is right, I, the Lord, will make it happen.”</p>
         </div>
         <div class="member-block">
           <h4>My Goals</h4>
@@ -1862,14 +1975,7 @@
         <a class="member-backlink" href="#portrait-leria" aria-label="Back to Kennette P. Leria portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
-          <ul>
-            <li>Name: Kennette Parañal Leria</li>
-            <li>Age: 21 years old</li>
-            <li>Birthday: December 30, 2004</li>
-            <li>Address: Sto. Domingo, Nabua, Camarines Sur</li>
-            <li>Father's Name: Saldy C. Leria</li>
-            <li>Mother's Name: Arlene P. Leria</li>
-          </ul>
+          <p>My name is Kennette P. Leria, but you may call me Ken for short. I am currently a third-year Bachelor of Science in Office Administration (BSOA) student at Camarines Sur Polytechnic Colleges. I consider myself a friendly and hardworking person who strives to balance my academics and personal interests while enjoying college life. During my free time, I enjoy playing basketball because it helps me stay active and allows me to spend time with my friends. I also enjoy sketching since it allows me to express my creativity and imagination. Aside from my hobbies, I also watch anime because it entertains and inspires me in many ways. Through these experiences and interests, I continue to grow and become a better version of myself every day.</p>
         </div>
         <div class="member-block">
           <h4>My Goals</h4>
@@ -1969,14 +2075,7 @@
         <a class="member-backlink" href="#portrait-ludovice" aria-label="Back to Jasmin L. Ludovice portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
-          <ul>
-            <li>Name: Jasmin L. Ludovice</li>
-            <li>Age: 20 years old</li>
-            <li>Birthday: December 2, 2005</li>
-            <li>Address: San Esteban, Nabua, Camarines Sur</li>
-            <li>Father's Name: Domingo L. Ludovice</li>
-            <li>Mother's Name: Jael L. Ludovice</li>
-          </ul>
+          <p>I am Jasmin L. Ludovice, and you may call me Jas. I am currently a third-year Bachelor of Science in Office Administration (BSOA) student at Camarines Sur Polytechnic Colleges. I am interested in developing my communication, organizational, and office-related skills to prepare myself for my future career. During my free time, I enjoy eating, dancing, and watching movies. Whenever I feel bored, I usually watch TikTok videos to relax and unwind. I also enjoy going out alone sometimes, especially when taking photos of places and scenery that catch my attention. I consider myself a cheerful and easy-going person who values positivity and enjoys creating a good atmosphere with the people around me.</p>
         </div>
         <div class="member-block">
           <h4>My Goals</h4>
@@ -2061,14 +2160,7 @@
         <a class="member-backlink" href="#portrait-monte" aria-label="Back to Rosita A. Monte portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
-          <ul>
-            <li>Name: Rosita A. Monte</li>
-            <li>Age: 21 years old</li>
-            <li>Birthday: July 03, 2004</li>
-            <li>Address: San Vicente, Buhi, Camarines Sur</li>
-            <li>Father's Name: Elmer M. Monte</li>
-            <li>Mother's Name: Jocelyn A. Monte (+)</li>
-          </ul>
+          <p>My name is Rosita A. Monte, and I am currently a third-year Bachelor of Science in Office Administration (BSOA) student at Camarines Sur Polytechnic Colleges. I currently serve as the Assistant Secretary of the PASOA organization, where I continue to develop my leadership and communication skills. Aside from my school responsibilities, I also serve as an altar server, which has helped strengthen my faith, discipline, and sense of service to others. During my free time, I enjoy sketching because it helps me relax and express my creativity. I also enjoy eating and spending time with my friends because it allows me to create happy memories and strengthen our bond. I believe that balancing academics, responsibilities, and personal interests helps me grow as a person and prepares me for my future career.</p>
         </div>
         <div class="member-block">
           <h4>My Goals</h4>
@@ -2167,14 +2259,7 @@
         <a class="member-backlink" href="#portrait-quemado" aria-label="Back to Stephanie G. Quemado portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
-          <ul>
-            <li>Name: Stephanie Gulpe Quemado</li>
-            <li>Age: 21 years old</li>
-            <li>Birthday: August 01, 2004</li>
-            <li>Address: Santa Isabel, Iriga City, Camarines Sur</li>
-            <li>Father's Name: Steven S. Quemado</li>
-            <li>Mother's Name: Josephine G. Quemado</li>
-          </ul>
+          <p>I am Stephanie G. Quemado, currently a third-year Bachelor of Science in Office Administration (BSOA) student at Camarines Sur Polytechnic Colleges. I consider myself a hardworking and goal-driven person who dreams of having a successful career in the future. I enjoy singing because it gives me confidence and happiness. I also love learning new skills that help me grow personally and professionally. My goal is to finish my studies, support my family, and achieve a stable and successful life someday.</p>
         </div>
         <div class="member-block">
           <h4>My Goals</h4>
@@ -2259,14 +2344,7 @@
         <a class="member-backlink" href="#portrait-talagtag" aria-label="Back to Missy Therese D. Talagtag portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
-          <ul>
-            <li>Name: Missy Therese Deniña Talagtag</li>
-            <li>Age: 21 years old</li>
-            <li>Birthday: January 17, 2005</li>
-            <li>Address: San Vicente, Bato, Camarines Sur</li>
-            <li>Father's Name: Diego S. Talagtag</li>
-            <li>Mother's Name: Porfiria D. Talagtag (+)</li>
-          </ul>
+          <p>I am Missy Therese D. Talagtag, and my loved ones call me “Ik.” I am currently a third-year Bachelor of Science in Office Administration (BSOA) student at Camarines Sur Polytechnic Colleges. I consider myself a cheerful person who continues to stay strong despite life’s challenges. For me, taking the BSOA program became an unexpected blessing because it gave me the opportunity to continue my college journey despite the difficulties I have experienced over the years. During my free time, I enjoy drawing because it is my way of expressing my emotions and creativity. I also love eating sweet foods because they make me happy and comfort me. In the future, I look forward to working hard, becoming financially independent, and achieving the goals I have set for myself.</p>
         </div>
         <div class="member-block">
           <h4>My Goals</h4>
@@ -2340,14 +2418,17 @@
   <section class="contact" id="contact">
     <div class="contact-inner">
       <div class="section-header reveal">
-        <h2 class="section-title">Get in <em>Touch</em> with Us</h2>
+        <h2 class="section-title">Connect with The <em>Royal Administrators</em></h2>
       </div>
       <p class="contact-desc reveal">We are proud to present this academic portfolio. For inquiries or collaborations,
         reach out to our institution.</p>
       <div class="contact-card reveal reveal-delay-1">
         <p><strong>Camarines Sur Polytechnic Colleges</strong></p>
+        <p>College of Tourism, Hospitality and Business Management</p>
+        <p>Bachelor of Science in Office Administration (BSOA 3F)</p>
+        <br>
         <p>San Miguel, Nabua, Camarines Sur 4434 Philippines</p>
-        <p><strong>BSOA 3F</strong></p>
+        <p>4434 Philippines</p>
         <p><a class="portrait-social-link" href="https://www.facebook.com/profile.php?id=61563661178344" target="_blank" rel="noopener" aria-label="Grace B. Cuenca on Facebook">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M20 12.1C20 7.6 16.4 4 12 4S4 7.6 4 12.1c0 4 2.9 7.3 6.7 7.9v-5.6H8.6V12h2.1V10.2c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.4h-1.8V20c3.8-.6 6.7-3.9 6.7-7.9z" />
@@ -2359,8 +2440,8 @@
 
   <!-- FOOTER -->
   <footer>
-    <img class="footer-banner" src="resources/gp_no_bg.png" alt="Group portrait banner">
-    <div class="footer-logo">Enchanted<span>Portfolio</span></div>
+    <img class="footer-banner" src="resources/ragpls.png" alt="Group portrait banner">
+    <div class="footer-logo">Enchanted <span>Portfolio</span></div>
     <div class="footer-copy">
       <span>2026 - BSOA 3F - Living in the IT Era</span>
       <span class="footer-copyright">Copyright (c) 2026 BSOA 3F. All rights reserved.</span>
@@ -2423,6 +2504,56 @@
         ring.style.opacity = '0.6';
       });
     });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navClose = document.getElementById('navClose');
+
+    function setNavMenuState(isOpen) {
+      if (!navToggle || !navMenu) return;
+      navMenu.classList.toggle('open', isOpen);
+      navMenu.setAttribute('aria-hidden', String(!isOpen));
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    }
+
+    function closeNavMenu() {
+      setNavMenuState(false);
+    }
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = !navMenu.classList.contains('open');
+        setNavMenuState(isOpen);
+      });
+
+      if (navClose) {
+        navClose.addEventListener('click', () => closeNavMenu());
+      }
+
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => closeNavMenu());
+      });
+
+      document.addEventListener('click', event => {
+        if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+          closeNavMenu();
+        }
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeNavMenu();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 680) {
+          closeNavMenu();
+        }
+      });
+    }
 
     // Sparkles
     const sparkleContainer = document.getElementById('sparkles');
