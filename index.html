@@ -216,6 +216,12 @@
       text-decoration: none;
     }
 
+    .nav-logo img {
+      display: block;
+      height: 42px;
+      width: auto;
+    }
+
     .nav-logo span {
       color: var(--rose);
     }
@@ -833,6 +839,23 @@
       grid-column: 1 / -1;
     }
 
+    .member-backlink {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--midnight-mid);
+      text-decoration: none;
+      display: inline-flex;
+      gap: 0.35rem;
+      align-items: center;
+      width: fit-content;
+    }
+
+    .member-backlink:hover {
+      color: var(--rose);
+    }
+
 
     .member-block {
       background: white;
@@ -1187,7 +1210,9 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Enchanted<span>Portfolio</span></a>
+    <a href="#" class="nav-logo">
+      <img src="resources/logo.png" alt="Enchanted Portfolio logo">
+    </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#ethics">Ethics</a></li>
@@ -1332,7 +1357,7 @@
       <img src="resources/gp_no_bg.png" alt="Group portrait emblem">
     </div>
     <div class="portraits-grid">
-      <div class="portrait-card reveal">
+      <div class="portrait-card reveal" id="portrait-brutas">
         <a class="portrait-card-main" href="#brutas" aria-label="View Ivy O. Brutas profile">
           <div class="portrait-thumb"><img src="resources/brutas/profile2.jpg" alt="Ivy O. Brutas"></div>
           <div class="portrait-info">
@@ -1352,7 +1377,7 @@
           </a>
         </div>
       </div>
-      <div class="portrait-card reveal reveal-delay-1">
+      <div class="portrait-card reveal reveal-delay-1" id="portrait-cuenca">
         <a class="portrait-card-main" href="#cuenca" aria-label="View Grace B. Cuenca profile">
           <div class="portrait-thumb"><img src="resources/cuenca/profile.jpg" alt="Grace B. Cuenca"></div>
           <div class="portrait-info">
@@ -1372,7 +1397,7 @@
           </a>
         </div>
       </div>
-      <div class="portrait-card reveal reveal-delay-2">
+      <div class="portrait-card reveal reveal-delay-2" id="portrait-esta">
         <a class="portrait-card-main" href="#esta" aria-label="View Ryza Joy B. Esta profile">
           <div class="portrait-thumb"><img src="resources/esta/profile2.jpg" alt="Ryza Joy B. Esta"></div>
           <div class="portrait-info">
@@ -1392,7 +1417,7 @@
           </a>
         </div>
       </div>
-      <div class="portrait-card reveal">
+      <div class="portrait-card reveal" id="portrait-leria">
         <a class="portrait-card-main" href="#leria" aria-label="View Kennette P. Leria profile">
           <div class="portrait-thumb"><img src="resources/leria/profile2.jpg" alt="Kennette P. Leria"></div>
           <div class="portrait-info">
@@ -1412,7 +1437,7 @@
           </a>
         </div>
       </div>
-      <div class="portrait-card reveal reveal-delay-1">
+      <div class="portrait-card reveal reveal-delay-1" id="portrait-ludovice">
         <a class="portrait-card-main" href="#ludovice" aria-label="View Jasmin L. Ludovice profile">
           <div class="portrait-thumb"><img src="resources/ludovice/profile2.jpg" alt="Jasmin L. Ludovice"></div>
           <div class="portrait-info">
@@ -1432,7 +1457,7 @@
           </a>
         </div>
       </div>
-      <div class="portrait-card reveal reveal-delay-2">
+      <div class="portrait-card reveal reveal-delay-2" id="portrait-monte">
         <a class="portrait-card-main" href="#monte" aria-label="View Rosita A. Monte profile">
           <div class="portrait-thumb"><img src="resources/monte/profile2.jpg" alt="Rosita A. Monte"></div>
           <div class="portrait-info">
@@ -1452,7 +1477,7 @@
           </a>
         </div>
       </div>
-      <div class="portrait-card reveal">
+      <div class="portrait-card reveal" id="portrait-quemado">
         <a class="portrait-card-main" href="#quemado" aria-label="View Stephanie G. Quemado profile">
           <div class="portrait-thumb"><img src="resources/quemado/profile2.jpg" alt="Stephanie G. Quemado"></div>
           <div class="portrait-info">
@@ -1472,7 +1497,7 @@
           </a>
         </div>
       </div>
-      <div class="portrait-card reveal reveal-delay-1">
+      <div class="portrait-card reveal reveal-delay-1" id="portrait-talagtag">
         <a class="portrait-card-main" href="#talagtag" aria-label="View Missy Therese D. Talagtag profile">
           <div class="portrait-thumb"><img src="resources/talagtag/profile.jpg" alt="Missy Therese D. Talagtag"></div>
           <div class="portrait-info">
@@ -1511,6 +1536,7 @@
       <div class="reveal reveal-delay-1">
         <div class="member-name">Ivy O. Brutas</div>
         <div class="member-role">Elsa</div>
+        <a class="member-backlink" href="#portrait-brutas" aria-label="Back to Ivy O. Brutas portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
           <ul>
@@ -1618,6 +1644,7 @@
       <div class="reveal reveal-delay-1">
         <div class="member-name">Grace B. Cuenca</div>
         <div class="member-role">Cinderella</div>
+        <a class="member-backlink" href="#portrait-cuenca" aria-label="Back to Grace B. Cuenca portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
           <ul>
@@ -1719,6 +1746,7 @@
       <div class="reveal reveal-delay-1">
         <div class="member-name">Ryza Joy B. Esta</div>
         <div class="member-role">Moana</div>
+        <a class="member-backlink" href="#portrait-esta" aria-label="Back to Ryza Joy B. Esta portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
           <ul>
@@ -1831,6 +1859,7 @@
       <div class="reveal reveal-delay-1">
         <div class="member-name">Kennette P. Leria</div>
         <div class="member-role">Flynn</div>
+        <a class="member-backlink" href="#portrait-leria" aria-label="Back to Kennette P. Leria portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
           <ul>
@@ -1937,6 +1966,7 @@
       <div class="reveal reveal-delay-1">
         <div class="member-name">Jasmin L. Ludovice</div>
         <div class="member-role">Jasmine</div>
+        <a class="member-backlink" href="#portrait-ludovice" aria-label="Back to Jasmin L. Ludovice portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
           <ul>
@@ -2028,6 +2058,7 @@
       <div class="reveal reveal-delay-1">
         <div class="member-name">Rosita A. Monte</div>
         <div class="member-role">Belle</div>
+        <a class="member-backlink" href="#portrait-monte" aria-label="Back to Rosita A. Monte portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
           <ul>
@@ -2133,6 +2164,7 @@
       <div class="reveal reveal-delay-1">
         <div class="member-name">Stephanie G. Quemado</div>
         <div class="member-role">Anna</div>
+        <a class="member-backlink" href="#portrait-quemado" aria-label="Back to Stephanie G. Quemado portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
           <ul>
@@ -2224,6 +2256,7 @@
       <div class="reveal reveal-delay-1">
         <div class="member-name">Missy Therese D. Talagtag</div>
         <div class="member-role">Aurora</div>
+        <a class="member-backlink" href="#portrait-talagtag" aria-label="Back to Missy Therese D. Talagtag portrait">← Back to portraits</a>
         <div class="member-block">
           <h4>About Me</h4>
           <ul>
@@ -2280,8 +2313,6 @@
                 alt="Talagtag professional development 1"></div>
             <div class="media-item"><img src="resources/talagtag/professional%20development%202.jpg"
                 alt="Talagtag professional development 2"></div>
-            <div class="media-item"><img src="resources/talagtag/professional%20development%203.jpg"
-                alt="Talagtag professional development 3"></div>
             <div class="media-item"><img src="resources/talagtag/professional%20development%204.jpg"
                 alt="Talagtag professional development 4"></div>
             <div class="media-item"><video src="resources/talagtag/professional%20development%205.MOV" controls
@@ -2309,7 +2340,6 @@
   <section class="contact" id="contact">
     <div class="contact-inner">
       <div class="section-header reveal">
-        <span class="section-tag">Get In Touch</span>
         <h2 class="section-title">Get in <em>Touch</em> with Us</h2>
       </div>
       <p class="contact-desc reveal">We are proud to present this academic portfolio. For inquiries or collaborations,
