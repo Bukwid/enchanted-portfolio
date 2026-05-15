@@ -20,12 +20,11 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
 
           script: |
+            set -e
             cd /home/bukwid/docker-platform/enchanted-portfolio
 
             git pull
 
             cd /home/bukwid/docker-platform
 
-            docker compose down enchantedportfolio
-            
-            docker compose up -d enchantedportfolio
+            docker compose up -d --build enchantedportfolio
